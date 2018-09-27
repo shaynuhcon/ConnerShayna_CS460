@@ -1,4 +1,19 @@
 .active {
-    background-color: gray;
-    color: white;
+    color: black;
+    font-weight: bold;
+}
+
+.header{
+    background-color: transparent;
+    text-align:center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+body {
+    background-color: mintcream;
+}
+
+.navbar{
+    border: 2px solid black;
 }
