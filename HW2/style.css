@@ -1,0 +1,52 @@
+.active {
+    color: black;
+    font-weight: bold;
+}
+
+.header{
+    background-color: transparent;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+body {
+    background-color: mintcream;
+}
+
+.navbar{
+    border: 1px solid black;
+    
+}
+
+h4{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;  
+}
+
+h5{
+    text-align: center;
+    padding-bottom: 20px;  
+}
+
+a:hover { 
+    background-color: lightseagreen;
+}
+
+.nav-item a:hover {
+    background-color: lightseagreen;
+}
+
+.dropdown-menu, .dropdown-item{
+    background-color: mintcream;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
