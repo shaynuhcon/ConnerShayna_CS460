@@ -25,16 +25,13 @@ h4{
     padding-bottom: 20px;  
 }
 
-h5{
+h6{
     text-align: center;
     padding-bottom: 20px;  
 }
 
-a:hover { 
-    background-color: lightseagreen;
-}
-
 .nav-item a:hover {
+    color: white !important;
     background-color: lightseagreen;
 }
 
@@ -49,4 +46,17 @@ img {
     width: 50%;
     padding-bottom: 20px;
     padding-top: 20px;
+}
+
+.col-md-3{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-bottom: 20px;
+}
+
+.btn:hover{
+    background-color: lightseagreen !important;
+
 }
