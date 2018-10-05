@@ -16,52 +16,100 @@
             <h1 class="header">Shayna likes food!</h1>
 
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                Recipes
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="mochikochicken.html">Mochiko Chicken</a>
-                                <a class="dropdown-item" href="locomoco.html">Loco Moco</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact Me</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <div id="nav-placeholder"></div>
+            
         </div>
     </div>
 
     <h4>Mochiko Chicken Recipe</h4>
-    <h5>Serves 6</h5>
+    <h6>Serves 6 people. Update serving size below if needed:</h6>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="input-group">
+                    <input type="number" id="size" class="form-control" placeholder="Serving size" aria-label="Recipient's username"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" id="update" type="button">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <div class="row">
             <div class="col-md">
+
                 <b>Ingredients:</b>
-                <!-- Unordered list -->
-                <ul>
-                    <li>2 pounds chicken thighs</li>
-                    <li>4 tablespoons mochiko flour</li>
-                    <li>4 tablespoons cornstarch</li>
-                    <li>4 tablespoons sugar</li>
-                    <li>4 tablespoons shoyu (soy sauce)</li>
-                    <li>2 cloves minced garlic</li>
-                    <li>1/2 teaspoon grated ginger</li>
-                    <li>1/2 teaspoon thinly sliced green onions</li>
-                    <li>1 tablespoon sesame seeds</li>
-                    <li>1/2 teaspoon salt</li>
-                    <li>2 eggs (beaten)</li>
-                </ul>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Measurement</th>
+                            <th scope="col">Ingredient</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="chicken">2</td>
+                            <td>pounds</td>
+                            <td>chicken thighs</td>
+                        </tr>
+                        <tr>
+                            <td id="flour">4</td>
+                            <td>tbsp</td>
+                            <td>mochiko flour</td>
+                        </tr>
+                        <tr>
+                            <td id="cornstarch">4</td>
+                            <td>tbsp</td>
+                            <td>cornstarch</td>
+                        </tr>
+                        <tr>
+                            <td id="sugar">4</td>
+                            <td>tbsp</td>
+                            <td>sugar</td>
+                        </tr>
+                        <tr>
+                            <td id="shoyu">4</td>
+                            <td>tbsp</td>
+                            <td>shoyu (soy sauce)</td>
+                        </tr>
+                        <tr>
+                            <td id="seeds">1</td>
+                            <td>tbsp</td>
+                            <td>sesame seeds</td>
+                        </tr>
+                        <tr>
+                            <td id="ginger">1/2</td>
+                            <td>teaspoon</td>
+                            <td>ginger (grated)</td>
+                        </tr>
+                        <tr>
+                            <td id="gronions">1/2</td>
+                            <td>teaspoon</td>
+                            <td>green onions (thinly sliced)</td>
+                        </tr>
+                        <tr>
+                            <td id="salt">1/2</td>
+                            <td>teaspoon</td>
+                            <td>salt</td>
+                        </tr>
+                        <tr>
+                            <td id="garlic">2</td>
+                            <td>cloves</td>
+                            <td>garlic (minced)</td>
+                        </tr>
+                        <tr>
+                            <td id="eggs">2</td>
+                            <td></td>
+                            <td>eggs (beaten)</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="col-md">
                 <b>Instructions:</b>
@@ -80,6 +128,8 @@
 
     <img src="mochikochickenpic.jpg" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
