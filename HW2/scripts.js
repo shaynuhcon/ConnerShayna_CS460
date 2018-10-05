@@ -1,5 +1,8 @@
 
-  
+  // Load nav bar on each HTML page
+$("#nav-placeholder").load("nav.html");
+
+// Function called when Update button clicked on mochikochicken.html 
   $("#update").click(function () {
     var sizeVal = $("#size").val();
 
@@ -16,6 +19,7 @@
     $("#eggs").text(Calculate(sizeVal, "eggs"));
 });
 
+// Calculates serving size portions
 function Calculate(sizeVal, food) {
     switch (food) {
         case "chicken":
@@ -36,4 +40,21 @@ function Calculate(sizeVal, food) {
     }
 };
 
-$("#nav-placeholder").load("nav.html");
+// Contacts page
+$("#submit").click(function () {
+    var name = document.getElementById("nameInput").value;
+    var email = document.getElementById("emailInput").value;
+    var type = document.getElementById("selectInput").value;
+    
+    if(type == "Have a question or comment")
+    {
+        $("#greeting").text("Thanks for sending a message, " + name + "! I'll get back to you soon! "
+        + "But not really because this site is fake.");
+    }
+    else
+    {
+        $("#greeting").text("Thanks for signing up to receive my recipes, " 
+        + name + "! They'll be sent to you at " + email + " as they become available. "
+        + " But not really because this site is fake.");
+    }
+});

@@ -32,8 +32,36 @@
                     </tr>
                 </tbody>
             </table>
+
+            <h4>Send me a message or sign up to receive new recipes below!</h4>
+
+            <form>
+                <div class="form-group">
+                    <label for="nameLabel">Name</label>
+                    <input type="text" class="form-control" id="nameInput" placeholder="First and last name">
+                </div>
+                <div class="form-group">
+                    <label for="emailLabel">Email address</label>
+                    <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="selectLabel">What can I help you with?</label>
+                    <select class="form-control" id="selectInput">
+                        <option>Have a question or comment</option>
+                        <option>Sign up for recipe!</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="textLabel">Enter message/question here!</label>
+                    <textarea class="form-control" id="textInput" rows="2"></textarea>
+                </div>
+                <button class="btn btn-outline-secondary" id="submit" type="button">Submit</button>
+            </form>
+
+            <h5 id="greeting"></p>
         </div>
     </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
