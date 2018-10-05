@@ -1,7 +1,7 @@
-$("#update").click(function () {
+
+  
+  $("#update").click(function () {
     var sizeVal = $("#size").val();
-
-
 
     $("#chicken").text(Calculate(sizeVal, "chicken"));
     $("#flour").text(Calculate(sizeVal, "flour"));
@@ -35,3 +35,5 @@ function Calculate(sizeVal, food) {
             return (Math.round((0.083333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333 * sizeVal) * 2) / 2).toFixed(1);
     }
 };
+
+$("#nav-placeholder").load("nav.html");
