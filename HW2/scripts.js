@@ -2,6 +2,20 @@
   // Load nav bar on each HTML page
 $("#nav-placeholder").load("nav.html");
 
+// Set original quantity values for recipe on mochikochicken.html
+$("#chicken").text(Calculate(6, "chicken"));
+$("#flour").text(Calculate(6, "flour"));
+$("#cornstarch").text(Calculate(6, "cornstarch"));
+$("#sugar").text(Calculate(6, "sugar"));
+$("#shoyu").text(Calculate(6, "shoyu"));
+$("#seeds").text(Calculate(6, "seeds"));
+$("#ginger").text(Calculate(6, "ginger"));
+$("#gronions").text(Calculate(6, "gronions"));
+$("#salt").text(Calculate(6, "salt"));
+$("#garlic").text(Calculate(6, "garlic"));
+$("#eggs").text(Calculate(6, "eggs"));
+
+
 // Function called when Update button clicked on mochikochicken.html 
   $("#update").click(function () {
     var sizeVal = $("#size").val();
