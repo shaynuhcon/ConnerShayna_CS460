@@ -42,16 +42,16 @@
     </div>
 
     <h4>Mochiko Chicken Recipe</h4>
-    <h6>Serves 6 people.Update serving size below if needed:</h6>
+    <h6>Serves 6 people. Update serving size below if needed:</h6>
 
     <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Serving size" aria-label="Recipient's username"
+                    <input type="number" id="size" class="form-control" placeholder="Serving size" aria-label="Recipient's username"
                         aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Update</button>
+                        <button class="btn btn-outline-secondary" id="update" type="button">Update</button>
                     </div>
                 </div>
             </div>
@@ -61,10 +61,38 @@
     <div class="container">
         <div class="row">
             <div class="col-md">
+
                 <b>Ingredients:</b>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Measurement</th>
+                            <th scope="col">Ingredient</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="serving">2</td>
+                            <td>pounds</td>
+                            <td>chicken thighs</td>
+                        </tr>
+                        <tr>
+                            <td id="serving">4</td>
+                            <td>tbsp</td>
+                            <td>mochiko flour</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 <!-- Unordered list -->
                 <ul>
-                    <li>2 pounds chicken thighs</li>
+                    <li id="serving">2 pounds chicken thighs</li>
                     <li>4 tablespoons mochiko flour</li>
                     <li>4 tablespoons cornstarch</li>
                     <li>4 tablespoons sugar</li>
@@ -94,6 +122,8 @@
 
     <img src="mochikochickenpic.jpg" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
