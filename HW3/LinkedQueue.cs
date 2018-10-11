@@ -20,7 +20,8 @@ namespace HW3
             if (IsEmpty())
             {
                 Node<T> temp = new Node<T>(element, null);
-                rear = front = temp;
+                rear = temp;
+                front = temp;
             }
             else
             {
@@ -53,7 +54,8 @@ namespace HW3
 
         public bool IsEmpty()
         {
-            return front == null && rear == null;
+            if (front == null && rear == null) return true;
+            return false;
         }
     }
 }
