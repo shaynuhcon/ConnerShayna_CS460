@@ -37,12 +37,14 @@ namespace HW3
         {
             T temp;
 
-            if (IsEmpty())
+            if (IsEmpty()) throw new QueueUnderflowException("The queue was empty when pop was invoked.");
+
+            if(front == rear)
             {
                 temp = front.Data;
                 front = null;
                 rear = null;
-            }
+            }  
             else
             {
                 temp = front.Data;

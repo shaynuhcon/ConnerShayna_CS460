@@ -22,7 +22,7 @@ namespace HW3
             {
                 // Print front of queue
                 StringBuilder sb = q.Pop();
-                output.AddFirst(sb.ToString());
+                output.AddLast(sb.ToString());
 
                 // Copy of string builder
                 StringBuilder sbc = new StringBuilder(sb.ToString());
@@ -71,6 +71,9 @@ namespace HW3
 
                 Console.WriteLine(s);
             }
+
+            Console.WriteLine("Press \"Enter\" key to exit...");
+            Console.Read();
         }
     }
 }
