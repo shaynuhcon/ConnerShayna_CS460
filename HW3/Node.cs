@@ -1,5 +1,8 @@
 ﻿namespace HW3
 {
+    /// <summary>
+    /// Singly linked node class
+    /// </summary>
     public class Node<T>
     {
         public T Data { get; set; }

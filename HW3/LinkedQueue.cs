@@ -2,15 +2,18 @@
 
 namespace HW3
 {
+    /// <summary>
+    /// Singly linked FIFO queue
+    /// </summary>
     public class LinkedQueue<T> : IQueue<T>
     {
-        private Node<T> front;
-        private Node<T> rear;
+        private Node<T> _front;
+        private Node<T> _rear;
 
         public LinkedQueue()
         {
-            front = null;
-            rear = null;
+            _front = null;
+            _rear = null;
         }
 
         public T Push(T element)
@@ -20,14 +23,14 @@ namespace HW3
             if (IsEmpty())
             {
                 Node<T> temp = new Node<T>(element, null);
-                rear = temp;
-                front = temp;
+                _rear = temp;
+                _front = temp;
             }
             else
             {
                 Node<T> temp = new Node<T>(element, null);
-                rear.Next = temp;
-                rear = temp;
+                _rear.Next = temp;
+                _rear = temp;
             }
 
             return element;
@@ -39,16 +42,16 @@ namespace HW3
 
             if (IsEmpty()) throw new QueueUnderflowException("The queue was empty when pop was invoked.");
 
-            if(front == rear)
+            if(_front == _rear)
             {
-                temp = front.Data;
-                front = null;
-                rear = null;
+                temp = _front.Data;
+                _front = null;
+                _rear = null;
             }  
             else
             {
-                temp = front.Data;
-                front = front.Next;
+                temp = _front.Data;
+                _front = _front.Next;
             }
 
             return temp;
@@ -56,8 +59,7 @@ namespace HW3
 
         public bool IsEmpty()
         {
-            if (front == null && rear == null) return true;
-            return false;
+            return _front == null && _rear == null;
         }
     }
 }

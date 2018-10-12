@@ -1,5 +1,8 @@
 ﻿namespace HW3
 {
+    /// <summary>
+    /// FIFO queue interface
+    /// </summary>
     public interface IQueue<T>
     {
         /// <summary>

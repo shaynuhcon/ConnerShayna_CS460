@@ -7,17 +7,25 @@ namespace HW3
 {
     public class Program
     {
+        /// <summary>
+        /// Uses FIFO queue to perform a level order traversal of a virtual binary
+        /// tree then stores each value in a list as it is visited. 
+        /// </summary>
+        /// <param name="n">Number of values</param>
+        /// <returns>Binary string output</returns>
         private static LinkedList<string> GenerateBinaryRepresentationList(int n)
         {
+            // Empty queue for traversal
             LinkedQueue<StringBuilder> q = new LinkedQueue<StringBuilder>();
 
+            // Output list for binary values
             LinkedList<string> output = new LinkedList<string>();
 
+            // Return empty list if input less than 1
             if (n < 1) return output;
 
             q.Push(new StringBuilder("1"));
 
-            // Breadth first search
             while (n-- > 0)
             {
                 // Print front of queue
@@ -41,11 +49,11 @@ namespace HW3
 
         public static void Main(string[] args)
         {
-            int n = 10;
+            int n;
             if (args.Length < 1)
             {
-                Console.WriteLine("Please invoke with the max value to print binary up to, like this:");
-                Console.WriteLine("\t--12 ");
+                Console.WriteLine("Please provide a numeric input. Example below:");
+                Console.WriteLine("\tHW3.exe 12");
                 return;
             }
 
