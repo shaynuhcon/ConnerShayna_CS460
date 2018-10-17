@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Converter</title>
+</head>
+
+<body>
+<h2>Convert Miles to Metric</h2>
+@using (Html.BeginForm("Converter", "Home", FormMethod.Get))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form>
+                    <div class="form-group">
+                        <label for="miles">Miles</label>
+                        <input type="text" class="form-control" id="miles" placeholder="Enter miles">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <label>Select a metric:</label>
+                <div class="radio">
+                    <label><input type="radio" name="units" value="millimeters" checked>millimeters</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="units" value="centimeters">centimeters</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="units" value="meters">meters</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="units" value="kilometers">kilometers</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <center>
+                <button type="submit" class="btn btn-primary">Convert</button>
+            </center>
+        </div>
+    </div>
+}
+</body>
+</html>

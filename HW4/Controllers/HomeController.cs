@@ -9,10 +9,10 @@ namespace HW4.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Converter()
         {
             return View();
         }
-
     }
 }
