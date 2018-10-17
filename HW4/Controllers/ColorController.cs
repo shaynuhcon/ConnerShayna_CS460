@@ -2,17 +2,12 @@
 
 namespace HW4.Controllers
 {
-    public class HomeController : Controller
+    public class ColorController : Controller
     {
+        // GET: Color
         public ActionResult Index()
         {
             return View();
         }
-
-        public ActionResult Converter()
-        {
-            return View();
-        }
-
     }
 }
