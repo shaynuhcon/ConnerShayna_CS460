@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<link rel="stylesheet" href="../../Content/style.css"/>
+
+<h2>Create a New Color</h2>
+
+Please enter colors in HTML hexadecimal format: #AABBCC
+
+@using (Html.BeginForm())
+{
+    @Html.Label("First Color")
+    @Html.TextBox("FirstColor", null, new {@class = "form-control", @placeholder = "#12B37F"})
+
+    @Html.Label("Second Color")
+    @Html.TextBox("SecondColor", null, new {@class = "form-control", @placeholder = "#A13344"})
+
+    <button type="submit" class="btn btn-primary">Mix Colors</button>
+}
