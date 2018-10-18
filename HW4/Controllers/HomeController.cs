@@ -14,26 +14,27 @@ namespace HW4.Controllers
         [HttpGet]
         public ActionResult Converter()
         {
-            string milesInput = Request["miles"];
-            string unitsInput = Request["units"];
-            decimal convertedMiles = 0;
+            // Retrieve input values from Request object
+            string milesInput = Request.QueryString["miles"];
+            string unitsInput = Request.QueryString["units"];
 
+            // Only do conversions if miles value has been provided by user
             if (!milesInput.IsNullOrWhiteSpace())
             {
-                decimal miles = 0;
-                try
-                {
-                    miles = Decimal.Parse(milesInput);
-                }
-                catch (Exception e)
-                {
-                    ViewBag.Error = e.ToString();
-                }
+                decimal convertedMiles = 0;
 
+                // Validate miles input and return error message if non-numeric value
+                if (!Decimal.TryParse(milesInput, out decimal miles))
+                {
+                    ViewBag.OutputMessage = "Error: Miles given must be a numerical value.";
+                    return View();
+                }
+                
+                // Calculate miles to unit conversion
                 switch (unitsInput)
                 {
                     case "millimeters":
-                        convertedMiles = miles * 1.609m;
+                        convertedMiles = miles * 1609000m;
                         break;
                     case "centimeters":
                         convertedMiles = miles * 160934.4m;
@@ -45,10 +46,10 @@ namespace HW4.Controllers
                         convertedMiles = miles * 1.609m;
                         break;
                 }
-            }
 
-            ViewBag.Converted = convertedMiles;
-            ViewBag.Units = unitsInput;
+                // Output message to display conversion
+                ViewBag.OutputMessage = $"{miles} miles is equal to {convertedMiles} {unitsInput}";
+            }
 
             return View();
         }

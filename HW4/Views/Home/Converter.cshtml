@@ -5,10 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Converter</title>
+    <link rel="stylesheet" href="../../Content/style.css"/>
 </head>
 
 <body>
 <h2>Convert Miles to Metric</h2>
+
+@* Form inputs for entering miles and choosing a unit *@
 <form action="Converter" method="get">
     <div class="container">
         <div class="row">
@@ -34,21 +37,20 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <center>
-                <button type="submit" class="btn btn-primary">Convert</button>
-            </center>
+        <div class="row centered">
+            <button type="submit" class="btn btn-primary">Convert</button>
         </div>
     </div>
 </form>
 
-@if (ViewBag.Error == null)
+@* Only display output message if values given by user and output has been assigned *@
+@if (ViewBag.OutputMessage != null)
 {
-    
-}
-else
-{
-    
+    <div class="row">
+        <div class="col-md-6">
+            <h4>@ViewBag.OutputMessage</h4>
+        </div>
+    </div>
 }
 </body>
 </html>

@@ -1,0 +1,11 @@
+﻿h4 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: darkred;
+    font-weight: bold;
+}
+
+.centered {
+    padding-top: 20px;
+    text-align: center;
+}
