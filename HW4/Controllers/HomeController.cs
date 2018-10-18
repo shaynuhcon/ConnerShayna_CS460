@@ -45,6 +45,9 @@ namespace HW4.Controllers
                     case "kilometers":
                         convertedMiles = miles * 1.609m;
                         break;
+                    default:
+                        ViewBag.OutputMessage = "Error: Invalid unit provided. Please select from one of the radio buttons.";
+                        return View();
                 }
 
                 // Output message to display conversion
