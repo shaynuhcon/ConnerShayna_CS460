@@ -1,21 +1,30 @@
-﻿
+﻿@using System.Web.UI.WebControls
 @{
     ViewBag.Title = "Create";
 }
 
-<link rel="stylesheet" href="../../Content/style.css"/>
+<link rel="stylesheet" href="../../Content/style.css" />
 
 <h2>Create a New Color</h2>
 
 Please enter colors in HTML hexadecimal format: #AABBCC
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Color", FormMethod.Post))
 {
-    @Html.Label("First Color")
-    @Html.TextBox("FirstColor", null, new {@class = "form-control", @placeholder = "#12B37F"})
+    <div class="wrapped">
+        @Html.Label("First Color")
+        @Html.TextBox("firstColor", null, new { @class = "form-control", placeholder = "#12B37F", pattern = "^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" })
+    </div>
 
-    @Html.Label("Second Color")
-    @Html.TextBox("SecondColor", null, new {@class = "form-control", @placeholder = "#A13344"})
+    <div class="wrapped">
 
-    <button type="submit" class="btn btn-primary">Mix Colors</button>
+        @Html.Label("Second Color")
+        @Html.TextBox("secondColor", null, new { @class = "form-control", placeholder = "#A13344", pattern = "^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" })
+    </div>
+
+    <div class="wrapped">
+        <button type="submit" class="btn btn-primary">Mix Colors</button>
+    </div>
 }
+
+@Html.TextArea("colorOne", new { @readonly = true, @cols = 12, @rows = 5, style = "background-color = red;" })
