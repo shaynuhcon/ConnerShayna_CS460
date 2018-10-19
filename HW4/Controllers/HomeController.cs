@@ -46,7 +46,7 @@ namespace HW4.Controllers
                         convertedMiles = miles * 1.609m;
                         break;
                     default:
-                        ViewBag.OutputMessage = "Error: Invalid unit provided. Please select from one of the radio buttons.";
+                        ViewBag.OutputMessage = "Error: Invalid metric provided. Please select from one of the radio buttons.";
                         return View();
                 }
 
