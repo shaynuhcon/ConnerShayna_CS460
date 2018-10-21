@@ -22,3 +22,36 @@ select,
 textarea {
     max-width: 280px;
 }
+
+h4 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: darkred;
+    font-weight: bold;
+}
+
+.centered {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.wrapped {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#squareOne, #squareTwo, #squareThree {
+    width: 100px;
+    height: 100px;
+    background: white;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+#plus, #equals {
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+}

@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Converter</title>
-    <link rel="stylesheet" href="../../Content/style.css"/>
 </head>
 
 <body>
@@ -15,25 +14,28 @@
 <form action="Converter" method="get">
     <div class="container">
         <div class="row">
+            @* Textbox for user's miles input *@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="miles">Miles</label>
                     <input type="text" class="form-control" id="miles" name="miles" placeholder="Enter miles">
                 </div>
             </div>
+
+            @*Radio buttons for units of measurement*@
             <div class="col-md-6">
                 <label>Select a metric:</label>
                 <div class="radio">
-                    <input type="radio" name="units" value="millimeters" checked>millimeters<br/>
+                    <input type="radio" name="units" value="millimeters" checked>millimeters<br />
                 </div>
                 <div class="radio">
-                    <input type="radio" name="units" value="centimeters">centimeters<br/>
+                    <input type="radio" name="units" value="centimeters">centimeters<br />
                 </div>
                 <div class="radio">
-                    <input type="radio" name="units" value="meters">meters<br/>
+                    <input type="radio" name="units" value="meters">meters<br />
                 </div>
                 <div class="radio">
-                    <input type="radio" name="units" value="kilometers">kilometers<br/>
+                    <input type="radio" name="units" value="kilometers">kilometers<br />
                 </div>
             </div>
         </div>
