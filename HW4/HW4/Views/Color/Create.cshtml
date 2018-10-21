@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create a New Color</h2>
+Please enter colors in HTML hexadecimal format: #AABBCC
+
+@using (Html.BeginForm("Create", "Color", FormMethod.Post))
+{
+    // Get first color (named firstColor) from user
+    <div class="wrapped">
+        @Html.Label("First Color")
+        @Html.TextBox("firstColor", null, new {@class = "form-control", placeholder = "#FF0000", pattern = "^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"})
+    </div>
+
+    // Get second color (named secondColor) from user
+    <div class="wrapped">
+        @Html.Label("Second Color")
+        @Html.TextBox("secondColor", null, new {@class = "form-control", placeholder = "#00FF00", pattern = "^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"})
+    </div>
+
+    <div class="wrapped">
+        <button type="submit" class="btn btn-primary">Mix Colors</button>
+    </div>
+}
+
+@*Checks if ViewBag.ColorOne is not null before showing color blocks. 
+Not bothering to check other 2 ViewBag colors since all 3 colors should be assigned together*@
+@if (ViewBag.ColorOne != null)
+{
+    <div class="wrapped">
+        <div id="squareOne" style="background-color: @ViewBag.ColorOne"></div>
+        <div id="plus">+</div>
+        <div id="squareTwo" style="background-color: @ViewBag.ColorTwo"></div>
+        <div id="equals">=</div>
+        <div id="squareThree" style="background-color: @ViewBag.NewColor"></div>
+    </div>
+}
