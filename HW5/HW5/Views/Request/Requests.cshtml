@@ -1,7 +1,45 @@
 ﻿@model IEnumerable<HW5.Models.TenantRequest>
 
 @{
-    ViewBag.Title = "Open Tenant Requests";
+    ViewBag.Title = "Tenant Requests";
 }
 
-<h2>Open Tenant Requests</h2>
+<h2>Tenant Requests</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Tenant Request Results</div>
+    <div class="panel-body">
+        <p><center>Listed below are all previous requests received. They may or may not be completed.</center></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">@Html.DisplayNameFor(model => model.RequestId)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Created)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.FullName)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.ApartmentName)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.UnitNumber)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Comments)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.IsEntrancePermitted)</th>
+                </tr>
+            </thead>  
+
+            <tbody>
+                @foreach (var request in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(model => request.RequestId)</td>
+                        <td>@Html.DisplayFor(model => request.Created)</td>
+                        <td>@Html.DisplayFor(model => request.FullName)</td>
+                        <td>@Html.DisplayFor(model => request.PhoneNumber)</td>
+                        <td>@Html.DisplayFor(model => request.ApartmentName)</td>
+                        <td>@Html.DisplayFor(model => request.UnitNumber)</td>
+                        <td>@Html.DisplayFor(model => request.Comments)</td>
+                        <td>@Html.DisplayFor(model => request.IsEntrancePermitted)</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
