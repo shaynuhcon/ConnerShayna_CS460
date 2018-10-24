@@ -10,7 +10,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[TennantRequest] (
+CREATE TABLE [dbo].[TenantRequest] (
     [RequestID]           INT          IDENTITY (1, 1) NOT NULL,
     [Created]             DATETIME     NOT NULL,
     [FirstName]           VARCHAR (50) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[TennantRequest] (
     [IsEntrancePermitted] BIT          NOT NULL
 );
 
-INSERT INTO [dbo].[TennantRequest] ([Created], [FirstName], [LastName], [PhoneNumber], [ApartmentName], [UnitNumber], [Comments], [IsEntrancePermitted]) 
+INSERT INTO [dbo].[TenantRequest] ([Created], [FirstName], [LastName], [PhoneNumber], [ApartmentName], [UnitNumber], [Comments], [IsEntrancePermitted]) 
 VALUES (GETDATE(), 'Joseph', 'Reese', '434-466-5050', 'Cedar Hall', 12, 'Sink leaking', 1),
 (GETDATE(), 'Richard', 'Anderson', '919-707-2434', 'Spruce Hall', 7, 'Refrigerator not working', 0),
 (GETDATE(), 'David', 'Freeman', '915-678-5108', 'Ackerman Hall', 19, 'Can someone feed my dog?', 1),

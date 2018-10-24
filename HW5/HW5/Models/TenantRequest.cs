@@ -2,7 +2,7 @@
 
 namespace HW5.Models
 {
-    public class TennantRequest
+    public class TenantRequest
     {
         public int RequestId { get; set; }
 
@@ -11,6 +11,8 @@ namespace HW5.Models
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public string PhoneNumber { get; set; }
 
         public string ApartmentName { get; set; }
 

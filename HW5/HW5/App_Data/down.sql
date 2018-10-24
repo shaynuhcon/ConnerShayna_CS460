@@ -7,6 +7,6 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-DROP TABLE [dbo].[TennantRequest];
+DROP TABLE [dbo].[TenantRequest];
 
 
