@@ -1,16 +1,4 @@
-﻿CREATE DATABASE CampusApartments
-GO 
-
-USE [CampusApartments]
-GO
-
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [dbo].[TenantRequest] (
+﻿CREATE TABLE [dbo].[TenantRequest] (
     [RequestID]           INT          IDENTITY (1, 1) NOT NULL,
     [Created]             DATETIME     NOT NULL,
     [FirstName]           VARCHAR (50) NOT NULL,
@@ -28,3 +16,5 @@ VALUES (GETDATE(), 'Joseph', 'Reese', '434-466-5050', 'Cedar Hall', 12, 'Sink le
 (GETDATE(), 'David', 'Freeman', '915-678-5108', 'Ackerman Hall', 19, 'Can someone feed my dog?', 1),
 (GETDATE(), 'Charlotte', 'Taylor', '978-915-8791', 'Noble Hall', 2, 'Dishwasher does not empty itself', 0),
 (GETDATE(), 'Karen', 'Bruce', '517-828-2407', 'Butler Hall', 17, 'Washer broken', 0)
+
+GO
