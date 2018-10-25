@@ -31,8 +31,9 @@ namespace HW5.Controllers
                 context.SaveChanges();
             }
 
-            // Find request ID for submitted request and return confirmation page
             TenantRequest addedRequest;
+
+            // Find request ID for submitted request and return confirmation page
             using (var context = new CampusApartmentsContext())
             {
                 addedRequest = context.TenantRequests.FirstOrDefault(x => x.LastName == model.LastName);
@@ -45,12 +46,14 @@ namespace HW5.Controllers
         {
             IEnumerable<TenantRequest> requests;
 
+            // Get all requests
             using (var context = new CampusApartmentsContext())
             {
                 requests = context.TenantRequests.ToList();
             }
 
-            return View(requests);
+            // Send requests to view ordered by Created date
+            return View(requests.OrderBy(x => x.Created));
         }
 
     }

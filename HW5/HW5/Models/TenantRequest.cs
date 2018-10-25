@@ -15,10 +15,12 @@ namespace HW5.Models
 
         [Required(ErrorMessage = "First name is required")]
         [DisplayName("First Name")]
+        [StringLength(50, ErrorMessage = "Name must be less than 50 characters")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Last name is required")]
         [DisplayName("Last Name")]
+        [StringLength(50, ErrorMessage = "Name must be less than 50 characters")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Phone number is required")]
@@ -28,10 +30,12 @@ namespace HW5.Models
 
         [Required(ErrorMessage = "Apartment name required")]
         [DisplayName("Apartment Name")]
+        [StringLength(50, ErrorMessage = "Name must be less than 50 characters")]
         public string ApartmentName { get; set; }
 
         [Required(ErrorMessage = "Unit number is required")]
         [DisplayName("Unit Number")]
+        [Range(0, int.MaxValue, ErrorMessage = "Unit number must be a whole number.")]
         public int UnitNumber { get; set; }
 
         [Required(ErrorMessage = "Feedback/comments are required.")]
@@ -41,6 +45,7 @@ namespace HW5.Models
         [DisplayName("Entrance Allowed")]
         public bool IsEntrancePermitted { get; set; }
 
+        // Just for display purposes on the Requests view
         [NotMapped]
         [DisplayName("Name")]
         public string FullName => $"{FirstName} {LastName}";
