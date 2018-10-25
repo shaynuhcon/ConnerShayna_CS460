@@ -202,6 +202,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Request\Requests.cshtml" />
     <Content Include="Views\Request\RequestForm.cshtml" />
+    <Content Include="Views\Request\ConfirmationPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

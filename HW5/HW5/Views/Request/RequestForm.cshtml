@@ -1,7 +1,59 @@
-﻿
+﻿@model HW5.Models.TenantRequest
 @{
-    ViewBag.Title = "RequestForm";
+    ViewBag.Title = "Tenant Request Form";
 }
 
-<h2>RequestForm</h2>
+<h2>Campus Apartments</h2>
+<h4>Tenant Request Form</h4>
 
+<hr/>
+
+@using (Html.BeginForm("RequestForm", "Request", FormMethod.Post))
+{
+    <form>
+        <div class="row">
+            <div class="form-group col-md-3">
+                @Html.DisplayNameFor(model => model.FirstName)
+                @Html.TextBoxFor(model => model.FirstName, new {@class = "form-control", placeholder = "First Name"})
+                @Html.ValidationMessageFor(model => model.FirstName, "", new {@class = "text-danger"})
+            </div>
+            <div class="form-group col-md-3">
+                @Html.DisplayNameFor(model => model.LastName)
+                @Html.TextBoxFor(model => model.LastName, new {@class = "form-control", placeholder = "Last Name"})
+                @Html.ValidationMessageFor(model => model.LastName, "", new {@class = "text-danger"})
+            </div>
+            <div class="form-group col-md-3">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+                @Html.TextBoxFor(model => model.PhoneNumber, new {@class = "form-control", placeholder = "Format: 555-555-1234"})
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.DisplayNameFor(model => model.ApartmentName)
+                @Html.TextBoxFor(model => model.ApartmentName, new {@class = "form-control", placeholder = "Apartment Name"})
+                @Html.ValidationMessageFor(model => model.ApartmentName, "", new {@class = "text-danger"})
+            </div>
+            <div class="form-group col-md-3">
+                @Html.DisplayNameFor(model => model.UnitNumber)
+                @Html.TextBoxFor(model => model.UnitNumber, new {@class = "form-control", placeholder = "Unit Number"})
+                @Html.ValidationMessageFor(model => model.UnitNumber, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-9">
+                @Html.DisplayNameFor(model => model.Comments)
+                @Html.TextAreaFor(model => model.Comments, new {@class = "form-control", rows = 10})
+                @Html.ValidationMessageFor(model => model.Comments, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <button type="submit" class="btn btn-default">Submit Request</button>
+            </div>
+            <div class="form-group col-md-6">
+                <label>@Html.CheckBoxFor(model => model.IsEntrancePermitted)&nbsp;Check this box to give permission for the landlord or representative to enter your unit to perform the requested maintenance. We will call first.</label>
+            </div>
+        </div>
+    </form>
+}
