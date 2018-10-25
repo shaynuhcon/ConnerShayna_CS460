@@ -7,6 +7,7 @@ namespace HW5.Models
 {
     public class TenantRequest
     {
+        [Key]
         [DisplayName("Request ID")]
         public int RequestId { get; set; }
 
@@ -42,6 +43,7 @@ namespace HW5.Models
         [DisplayName("Comments")]
         public string Comments { get; set; }
 
+        [Range(typeof(bool), "true", "true", ErrorMessage = "Permission required for maintenance.")]
         [DisplayName("Entrance Allowed")]
         public bool IsEntrancePermitted { get; set; }
 

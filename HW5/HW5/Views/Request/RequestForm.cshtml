@@ -10,6 +10,7 @@
 
 @using (Html.BeginForm("RequestForm", "Request", FormMethod.Post))
 {
+    //Uses grid layout to display form elements. All required 
     <form>
         <div class="row">
             <div class="form-group col-md-3">
@@ -53,6 +54,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label>@Html.CheckBoxFor(model => model.IsEntrancePermitted)&nbsp;Check this box to give permission for the landlord or representative to enter your unit to perform the requested maintenance. We will call first.</label>
+                @Html.ValidationMessageFor(model => model.IsEntrancePermitted, "", new {@class = "text-danger"})
             </div>
         </div>
     </form>

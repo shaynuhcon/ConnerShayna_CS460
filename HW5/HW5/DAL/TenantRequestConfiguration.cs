@@ -5,6 +5,7 @@ namespace HW5.DAL
 {
     public class TenantRequestConfiguration : EntityTypeConfiguration<TenantRequest>
     {
+        // This class is a configuration that maps between C# and SQL data types 
         public TenantRequestConfiguration()
         {
             ToTable("TenantRequest");

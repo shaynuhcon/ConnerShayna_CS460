@@ -37,8 +37,12 @@
                     <td>@Html.DisplayFor(model => request.ApartmentName)</td>
                     <td>@Html.DisplayFor(model => request.UnitNumber)</td>
                     <td>@Html.DisplayFor(model => request.Comments)</td>
-                    <td>@Html.DisplayFor(model => request.IsEntrancePermitted)</td>
-
+                    
+                    @* Display yes or no for bool instead of checkbox *@
+                    <td>@if (request.IsEntrancePermitted)
+                        {<text>Yes</text>}
+                        else
+                        {<text>No</text>}</td>
                 </tr>
             }
             </tbody>

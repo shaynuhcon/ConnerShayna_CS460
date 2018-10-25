@@ -42,7 +42,7 @@ namespace HW5.Controllers
             return View("ConfirmationPage", addedRequest);
         }
 
-        public ActionResult Requests()
+        public ActionResult TenantRequests()
         {
             IEnumerable<TenantRequest> requests;
 
@@ -55,6 +55,5 @@ namespace HW5.Controllers
             // Send requests to view ordered by Created date
             return View(requests.OrderBy(x => x.Created));
         }
-
     }
 }

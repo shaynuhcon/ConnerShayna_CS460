@@ -12,9 +12,9 @@
 
 INSERT INTO [dbo].[TenantRequest] ([Created], [FirstName], [LastName], [PhoneNumber], [ApartmentName], [UnitNumber], [Comments], [IsEntrancePermitted]) 
 VALUES (GETDATE(), 'Joseph', 'Reese', '434-466-5050', 'Cedar Hall', 12, 'Sink leaking', 1),
-(GETDATE(), 'Richard', 'Anderson', '919-707-2434', 'Spruce Hall', 7, 'Refrigerator not working', 0),
+(GETDATE(), 'Richard', 'Anderson', '919-707-2434', 'Spruce Hall', 7, 'Refrigerator not working', 1),
 (GETDATE(), 'David', 'Freeman', '915-678-5108', 'Ackerman Hall', 19, 'Can someone feed my dog?', 1),
-(GETDATE(), 'Charlotte', 'Taylor', '978-915-8791', 'Noble Hall', 2, 'Dishwasher does not empty itself', 0),
-(GETDATE(), 'Karen', 'Bruce', '517-828-2407', 'Butler Hall', 17, 'Washer broken', 0)
+(GETDATE(), 'Charlotte', 'Taylor', '978-915-8791', 'Noble Hall', 2, 'Dishwasher does not empty itself', 1),
+(GETDATE(), 'Karen', 'Bruce', '517-828-2407', 'Butler Hall', 17, 'Washer broken', 1)
 
 GO

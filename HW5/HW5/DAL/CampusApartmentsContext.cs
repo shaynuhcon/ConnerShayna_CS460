@@ -11,6 +11,7 @@ namespace HW5.DAL
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {
+            // Model configuration to map entity to model
             builder.Configurations.Add(new TenantRequestConfiguration());
         }
     }
