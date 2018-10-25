@@ -7,7 +7,6 @@ namespace HW5.Models
 {
     public class TenantRequest
     {
-        [Key]
         [DisplayName("Request ID")]
         public int RequestId { get; set; }
 
