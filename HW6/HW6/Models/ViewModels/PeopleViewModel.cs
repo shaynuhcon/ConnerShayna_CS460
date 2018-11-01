@@ -6,6 +6,6 @@ namespace HW6.Models.ViewModels
     {
         public string Name { get; set; }
 
-        public IEnumerable<Person> PeopleResults { get; set; }
+        public IEnumerable<PersonSearchViewModel> PeopleResults { get; set; }
     }
 }

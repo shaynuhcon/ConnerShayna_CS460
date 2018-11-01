@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using HW6.DAL;
-using HW6.Models;
 using HW6.Models.ViewModels;
 
 namespace HW6.Controllers
@@ -18,7 +17,13 @@ namespace HW6.Controllers
         {
             using (var context = new WideWorldImportersContext())
             {
-                model.PeopleResults = context.People.Where(x => x.FullName.Contains(model.Name)).ToList();
+                model.PeopleResults = context.People
+                    .Where(p => p.FullName.Contains(model.Name))
+                    .Select(p => new PersonSearchViewModel
+                    {
+                        PersonID = p.PersonID,
+                        FullName = p.FullName
+                    }).ToList();
             }
 
             return View(model);
@@ -27,15 +32,25 @@ namespace HW6.Controllers
         [HttpGet]
         public ActionResult Get(int id)
         {
-            Person person;
+            PersonViewModel person;
 
             using (var context = new WideWorldImportersContext())
             {
-                person = context.People.FirstOrDefault(x => x.PersonID == id);
+                person = context.People
+                    .Where(p => p.PersonID == id)
+                    .Select(p => new PersonViewModel
+                    {
+                        FullName = p.FullName,
+                        PreferredName = p.PreferredName,
+                        PhoneNumber = p.PhoneNumber,
+                        FaxNumber = p.FaxNumber,
+                        EmailAddress = p.EmailAddress,
+                        ValidFrom = p.ValidFrom,
+                        Photo = p.Photo
+                    }).FirstOrDefault();
             }
 
             return View(person);
-
         }
     }
 }

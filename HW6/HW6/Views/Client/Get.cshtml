@@ -1,5 +1,10 @@
-﻿@model HW6.Models.Person
+﻿@model HW6.Models.ViewModels.PersonViewModel
 
 
 
-@Model.FullName
+@Html.DisplayFor(model => model.FullName)
+@Html.DisplayFor(model => model.PreferredName)
+@Html.DisplayFor(model => model.PhoneNumber)
+@Html.DisplayFor(model => model.FaxNumber)
+@Html.DisplayFor(model => model.ValidFrom)
+@Html.DisplayFor(model => model.Photo)
