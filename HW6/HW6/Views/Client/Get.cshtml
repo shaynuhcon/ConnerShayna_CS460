@@ -1,10 +1,18 @@
 ﻿@model HW6.Models.ViewModels.PersonViewModel
 
+<div class="image">
+    <img src="@Url.Content("~/Content/Images/NoPhotoAvailable.jpg")" alt="No photo available." style="width: 150px; height: 200px;"/>
+</div>
 
-
-@Html.DisplayFor(model => model.FullName)
-@Html.DisplayFor(model => model.PreferredName)
-@Html.DisplayFor(model => model.PhoneNumber)
-@Html.DisplayFor(model => model.FaxNumber)
-@Html.DisplayFor(model => model.ValidFrom)
-@Html.DisplayFor(model => model.Photo)
+<div class="panel panel-default center">
+    <div class="panel-heading">
+        <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About @Model.FullName</h3>
+    </div>
+    <div class="panel-body">
+        @Html.DisplayFor(model => model.PreferredName)
+        @Html.DisplayFor(model => model.PhoneNumber)
+        @Html.DisplayFor(model => model.FaxNumber)
+        @Html.DisplayFor(model => model.ValidFrom)
+        @Html.DisplayFor(model => model.Photo)
+    </div>
+</div>
