@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity.SqlServer;
+using System.Linq;
 using System.Web.Mvc;
 using HW6.DAL;
 using HW6.Models.ViewModels;
@@ -45,7 +46,7 @@ namespace HW6.Controllers
                         PhoneNumber = p.PhoneNumber,
                         FaxNumber = p.FaxNumber,
                         EmailAddress = p.EmailAddress,
-                        ValidFrom = p.ValidFrom,
+                        ValidFrom = SqlFunctions.DateName("month", p.ValidFrom) + " " + SqlFunctions.DateName("day", p.ValidFrom) + ", " + SqlFunctions.DateName("year", p.ValidFrom),
                         Photo = p.Photo
                     }).FirstOrDefault();
             }

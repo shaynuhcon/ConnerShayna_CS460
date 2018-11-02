@@ -1,6 +1,7 @@
 ﻿@model HW6.Models.ViewModels.PeopleViewModel
+
 @{
-    ViewBag.Title = "Search";
+    ViewBag.Title = "Client Search";
 }
 
 <h3>Client Search</h3>
@@ -28,8 +29,7 @@
             @foreach (var person in Model.PeopleResults)
             {
                 <tr>
-                    <td>@Html.DisplayFor(x => person.FullName)</td>
-                    <td>@Html.ActionLink($"Click here to view info for {person.FullName}", "Get", "Client", new { id = person.PersonID}, null)</td>
+                    <td>@Html.ActionLink(@person.FullName, "Get", "Client", new { id = person.PersonID}, null)</td>
                 </tr>
             }
             </tbody>
