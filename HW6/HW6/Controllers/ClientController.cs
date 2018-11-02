@@ -8,12 +8,7 @@ namespace HW6.Controllers
 {
     public class ClientController : Controller
     {
-        private readonly WideWorldImportersContext _context;
-
-        public ClientController(WideWorldImportersContext context)
-        {
-            _context = context;
-        }
+        private readonly WideWorldImportersContext _context = new WideWorldImportersContext();
 
         public ActionResult Search()
         {
@@ -38,12 +33,15 @@ namespace HW6.Controllers
         [HttpGet]
         public ActionResult Get(int id)
         {
-            PersonViewModel person;
-
             var primary = _context.Customers.FirstOrDefault(c => c.PrimaryContactPersonID == id);
-            if (primary != null) return RedirectToAction("GetPrimaryContact", new {id});
 
-            person = _context.People
+            if (primary != null)
+            {
+                _context.Dispose();
+                return RedirectToAction("GetPrimaryContact", new {id});
+            }
+
+            PersonViewModel person = _context.People
                 .Where(p => p.PersonID == id)
                 .Select(p => new PersonViewModel
                 {
@@ -64,8 +62,39 @@ namespace HW6.Controllers
 
         public ActionResult GetPrimaryContact(int id)
         {
-            var primary = _context.Customers.FirstOrDefault(c => c.PrimaryContactPersonID == id);
+            var customer = new CustomerViewModel();
+
+            customer.Company = _context.Customers
+                .Where(c => c.PrimaryContactPersonID == id)
+                .Select(c => new CompanyViewModel
+                {
+                    CompanyName = c.CustomerName,
+                    AccountOpened = SqlFunctions.DateName("month", c.AccountOpenedDate) + " " +
+                                    SqlFunctions.DateName("day", c.AccountOpenedDate) + ", " +
+                                    SqlFunctions.DateName("year", c.AccountOpenedDate),
+                    FaxNumber = c.FaxNumber,
+                    PhoneNumber = c.PhoneNumber,
+                    Website = c.WebsiteURL
+                }).FirstOrDefault();
             
+            customer.Purchases = new PurchaseViewModel
+            {
+                TotalOrders = _context.Customers.Where(c => c.PrimaryContactPersonID == id).SelectMany(c => c.Orders)
+                    .ToList().Count,
+                TotalGrossSales = _context.Customers
+                    .Where(c => c.PrimaryContactPersonID == id)
+                    .SelectMany(c => c.Orders
+                        .SelectMany(o => o.Invoices
+                            .SelectMany(i => i.InvoiceLines.Select(il => il.ExtendedPrice)))).ToList().Sum(),
+                TotalProfit = _context.Customers
+                    .Where(c => c.PrimaryContactPersonID == id)
+                    .SelectMany(c => c.Orders
+                        .SelectMany(o => o.Invoices
+                            .SelectMany(i => i.InvoiceLines.Select(il => il.LineProfit)))).ToList().Sum()
+            };
+
+            _context.Dispose();
+            return View("CustomerDashboard", customer);
         }
     }
 }
