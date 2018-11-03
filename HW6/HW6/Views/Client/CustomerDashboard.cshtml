@@ -1,8 +1,150 @@
 ﻿@model HW6.Models.ViewModels.CustomerViewModel
 
 @{
-    ViewBag.Title = "Customer Dashboard";
+    ViewBag.Title = "Customer Sales Dashboard";
 }
 
-<h2>CustomerDashboard</h2>
+<img src="@Url.Content("~/Content/Images/NoPhotoAvailable.jpg")" alt="No photo available." style="width: 150px; height: 200px;"/>
 
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default center">
+            <div class="panel-heading">
+                <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About @Model.Person.FullName</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4 bold">@Html.DisplayNameFor(model => model.Person.FullName): </div>
+                    <div class="col-md-3">@Html.DisplayFor(model => model.Person.FullName)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 bold">@Html.DisplayNameFor(model => model.Person.PreferredName): </div>
+                    <div class="col-md-3">@Html.DisplayFor(model => model.Person.PreferredName)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 bold">@Html.DisplayNameFor(model => model.Person.PhoneNumber): </div>
+                    <div class="col-md-3">@Html.DisplayFor(model => model.Person.PhoneNumber)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 bold">@Html.DisplayNameFor(model => model.Person.FaxNumber): </div>
+                    <div class="col-md-3">@Html.DisplayFor(model => model.Person.FaxNumber)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 bold">@Html.DisplayNameFor(model => model.Person.ValidFrom): </div>
+                    <div class="col-md-3">@Html.DisplayFor(model => model.Person.ValidFrom)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-default center">
+            <div class="panel-heading">
+                <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Company Information</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4 bold">@Html.DisplayNameFor(model => model.Company.CompanyName): </div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.Company.CompanyName)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 bold">@Html.DisplayNameFor(model => model.Company.PhoneNumber): </div>
+                    <div class="col-md-3">@Html.DisplayFor(model => model.Company.PhoneNumber)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 bold">@Html.DisplayNameFor(model => model.Company.FaxNumber): </div>
+                    <div class="col-md-3">@Html.DisplayFor(model => model.Company.FaxNumber)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 bold">@Html.DisplayNameFor(model => model.Company.Website): </div>
+                    <div class="col-md-3">
+                        <a href="@Model.Company.Website">@Model.Company.Website</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 bold">@Html.DisplayNameFor(model => model.Company.AccountOpened): </div>
+                    <div class="col-md-3">@Html.DisplayFor(model => model.Company.AccountOpened)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default center">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About @Model.Person.FullName</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4 bold">@Html.DisplayNameFor(model => model.Purchases.TotalOrders): </div>
+                        <div class="col-md-3">@Html.DisplayFor(model => model.Purchases.TotalOrders)</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 bold">@Html.DisplayNameFor(model => model.Purchases.TotalGrossSales): </div>
+                        <div class="col-md-3">@Html.DisplayFor(model => model.Purchases.TotalGrossSales)</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 bold">@Html.DisplayNameFor(model => model.Purchases.TotalProfit): </div>
+                        <div class="col-md-3">@Html.DisplayFor(model => model.Purchases.TotalProfit)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default center">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Company Location</h3>
+                </div>
+                <div class="panel-body">
+                    @* Map here *@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default center">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    </h3>
+                </div>
+                <table class="table">
+                    @* Table headers *@
+                    <thead>
+                    <tr>
+                        <th scope="col">@Html.DisplayNameFor(model => model.Items.First().StockItemID)</th>
+                        <th scope="col">@Html.DisplayNameFor(model => model.Items.First().Description)</th>
+                        <th scope="col">@Html.DisplayNameFor(model => model.Items.First().LineProfit)</th>
+                        <th scope="col">@Html.DisplayNameFor(model => model.Items.First().SalesPerson)</th>
+                    </tr>
+                    </thead>
+
+                    @* Table values *@
+                    <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(model => item.StockItemID)</td>
+                            <td>@Html.DisplayFor(model => item.Description)</td>
+                            <td>@Html.DisplayFor(model => item.LineProfit)</td>
+                            <td>@Html.DisplayFor(model => item.SalesPerson)</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    &lArr; @Html.ActionLink("Back to search results", null, null, null, new {onclick = "window.history.go(-1); return false;"})
+</div>

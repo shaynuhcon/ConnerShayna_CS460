@@ -33,15 +33,18 @@ namespace HW6.Controllers
         [HttpGet]
         public ActionResult Get(int id)
         {
+            // Check if Person is a PrimaryContactPerson in Customer table
             var primary = _context.Customers.FirstOrDefault(c => c.PrimaryContactPersonID == id);
 
+            // If Person is PrimaryContactPerson, redirect to get full Customer profile
             if (primary != null)
             {
                 _context.Dispose();
                 return RedirectToAction("GetPrimaryContact", new {id});
             }
 
-            var person = _context.People
+            // Get values needed for profile
+            PersonViewModel person = _context.People
                 .Where(p => p.PersonID == id)
                 .Select(p => new PersonViewModel
                 {
@@ -57,9 +60,11 @@ namespace HW6.Controllers
                 }).FirstOrDefault();
 
             _context.Dispose();
+
             return View(person);
         }
 
+        // Method for full customer sales dashboard
         public ActionResult GetPrimaryContact(int id)
         {
             var customer = new CustomerViewModel();
@@ -121,7 +126,7 @@ namespace HW6.Controllers
                 .Take(10)
                 .Select(item => new ItemViewModel
                 {
-                    StockItemId = item.InvoiceLine.StockItemID,
+                    StockItemID = item.InvoiceLine.StockItemID,
                     Description = item.InvoiceLine.Description,
                     LineProfit = item.InvoiceLine.LineProfit,
                     SalesPerson = item.Invoice.Person4.FullName
