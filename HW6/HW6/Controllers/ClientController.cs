@@ -41,7 +41,7 @@ namespace HW6.Controllers
                 return RedirectToAction("GetPrimaryContact", new {id});
             }
 
-            PersonViewModel person = _context.People
+            var person = _context.People
                 .Where(p => p.PersonID == id)
                 .Select(p => new PersonViewModel
                 {
@@ -64,6 +64,23 @@ namespace HW6.Controllers
         {
             var customer = new CustomerViewModel();
 
+            // Get Person data
+            customer.Person = _context.People
+                .Where(p => p.PersonID == id)
+                .Select(p => new PersonViewModel
+                {
+                    FullName = p.FullName,
+                    PreferredName = p.PreferredName,
+                    PhoneNumber = p.PhoneNumber,
+                    FaxNumber = p.FaxNumber,
+                    EmailAddress = p.EmailAddress,
+                    ValidFrom = SqlFunctions.DateName("month", p.ValidFrom) + " " +
+                                SqlFunctions.DateName("day", p.ValidFrom) + ", " +
+                                SqlFunctions.DateName("year", p.ValidFrom),
+                    Photo = p.Photo
+                }).FirstOrDefault();
+
+            // Get Company data
             customer.Company = _context.Customers
                 .Where(c => c.PrimaryContactPersonID == id)
                 .Select(c => new CompanyViewModel
@@ -76,7 +93,8 @@ namespace HW6.Controllers
                     PhoneNumber = c.PhoneNumber,
                     Website = c.WebsiteURL
                 }).FirstOrDefault();
-            
+
+            // Get data on invoice purchase amounts
             customer.Purchases = new PurchaseViewModel
             {
                 TotalOrders = _context.Customers.Where(c => c.PrimaryContactPersonID == id).SelectMany(c => c.Orders)
@@ -92,6 +110,22 @@ namespace HW6.Controllers
                         .SelectMany(o => o.Invoices
                             .SelectMany(i => i.InvoiceLines.Select(il => il.LineProfit)))).ToList().Sum()
             };
+
+            // Get most profitable items from this customer
+            int customerId = _context.Customers.FirstOrDefault(c => c.PrimaryContactPersonID == id).CustomerID;
+
+            customer.Items = _context.Invoices.Join(_context.InvoiceLines, i => i.InvoiceID, il => il.InvoiceID,
+                    (i, il) => new {Invoice = i, InvoiceLine = il})
+                .Where(x => x.Invoice.CustomerID == customerId)
+                .OrderByDescending(il => il.InvoiceLine.LineProfit)
+                .Take(10)
+                .Select(item => new ItemViewModel
+                {
+                    StockItemId = item.InvoiceLine.StockItemID,
+                    Description = item.InvoiceLine.Description,
+                    LineProfit = item.InvoiceLine.LineProfit,
+                    SalesPerson = item.Invoice.Person4.FullName
+                }).ToList();
 
             _context.Dispose();
             return View("CustomerDashboard", customer);
