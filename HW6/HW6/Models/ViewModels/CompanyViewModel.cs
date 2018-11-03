@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Data.Entity.Spatial;
 
 namespace HW6.Models.ViewModels
 {
@@ -18,5 +19,13 @@ namespace HW6.Models.ViewModels
 
         [DisplayName("Member since")]
         public string AccountOpened { get; set; }
+
+        public DbGeography DeliveryLocation { get; set; }
+
+        public string DeliveryAddress { get; set; }
+
+        public string City { get; set; }
+
+        public string PostalCode { get; set; }
     }
 }

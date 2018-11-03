@@ -96,7 +96,11 @@ namespace HW6.Controllers
                                     SqlFunctions.DateName("year", c.AccountOpenedDate),
                     FaxNumber = c.FaxNumber,
                     PhoneNumber = c.PhoneNumber,
-                    Website = c.WebsiteURL
+                    Website = c.WebsiteURL,
+                    DeliveryLocation = c.DeliveryLocation,
+                    DeliveryAddress = c.DeliveryAddressLine2,
+                    City = c.City,
+                    
                 }).FirstOrDefault();
 
             // Get data on invoice purchase amounts
@@ -133,6 +137,7 @@ namespace HW6.Controllers
                 }).ToList();
 
             _context.Dispose();
+
             return View("CustomerDashboard", customer);
         }
     }

@@ -4,6 +4,11 @@
     ViewBag.Title = "Customer Sales Dashboard";
 }
 
+<style>
+    table, th, td {
+          text-align: center;
+      }
+</style>
 <img src="@Url.Content("~/Content/Images/NoPhotoAvailable.jpg")" alt="No photo available." style="width: 150px; height: 200px;"/>
 
 <div class="row">
@@ -75,7 +80,7 @@
         <div class="col-md-6">
             <div class="panel panel-default center">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About @Model.Person.FullName</h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Purchase History Information</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -100,7 +105,7 @@
                     <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Company Location</h3>
                 </div>
                 <div class="panel-body">
-                    @* Map here *@
+                    <div id="companyMap" style="position:relative;width:500px;height:300px;"></div>
                 </div>
             </div>
         </div>
@@ -148,3 +153,26 @@
 <div class="wrapper">
     &lArr; @Html.ActionLink("Back to search results", null, null, null, new {onclick = "window.history.go(-1); return false;"})
 </div>
+
+<script type="text/javascript">
+    function GetMap() {
+        var map = new Microsoft.Maps.Map('#companyMap', {
+            credentials: 'Ahv-F01PspFXLNi4r0FsfdRwObINnyUo6GzwJSGhBN35EP7YoMaWKbWZOmjE2oJf',
+            center: new Microsoft.Maps.Location(@Model.Company.DeliveryLocation.Latitude, @Model.Company.DeliveryLocation.Longitude)
+        });
+
+        var center = map.getCenter();
+
+        //Create custom Pushpin
+        var pin = new Microsoft.Maps.Pushpin(center, {
+            title: 'Microsoft',
+            subTitle: 'City Center',
+            text: '1'
+        });
+
+        //Add the pushpin to the map
+        map.entities.push(pin);
+    }
+</script>
+
+<script type="text/javascript" src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap" async defer></script>
