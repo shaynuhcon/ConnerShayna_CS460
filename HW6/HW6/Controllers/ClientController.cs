@@ -8,7 +8,7 @@ namespace HW6.Controllers
 {
     public class ClientController : Controller
     {
-        private readonly WideWorldImportersContext _context = new WideWorldImportersContext();
+        private readonly WorldWideImportersContext _context = new WorldWideImportersContext();
 
         public ActionResult Search()
         {
@@ -98,9 +98,8 @@ namespace HW6.Controllers
                     PhoneNumber = c.PhoneNumber,
                     Website = c.WebsiteURL,
                     DeliveryLocation = c.DeliveryLocation,
-                    DeliveryAddress = c.DeliveryAddressLine2,
-                    City = c.City,
-                    
+                    City = c.City.CityName,
+                    State =  c.City.StateProvince.StateProvinceName
                 }).FirstOrDefault();
 
             // Get data on invoice purchase amounts

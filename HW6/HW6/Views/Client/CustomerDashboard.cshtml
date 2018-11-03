@@ -118,8 +118,8 @@
             <div class="panel panel-default center">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                    </h3>
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Top 10 Highest Profit Items Purchased
+</h3>
                 </div>
                 <table class="table">
                     @* Table headers *@
@@ -165,8 +165,8 @@
 
         //Create custom Pushpin
         var pin = new Microsoft.Maps.Pushpin(center, {
-            title: 'Microsoft',
-            subTitle: 'City Center',
+            title: '@Model.Company.CompanyName',
+            subTitle: '@Model.Company.City,' + '@Model.Company.State',
             text: '1'
         });
 

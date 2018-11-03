@@ -22,10 +22,9 @@ namespace HW6.Models.ViewModels
 
         public DbGeography DeliveryLocation { get; set; }
 
-        public string DeliveryAddress { get; set; }
-
         public string City { get; set; }
 
-        public string PostalCode { get; set; }
+        public string State { get; set; }
+
     }
 }

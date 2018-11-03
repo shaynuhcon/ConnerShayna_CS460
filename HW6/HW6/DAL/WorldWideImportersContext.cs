@@ -3,9 +3,9 @@ using HW6.Models;
 
 namespace HW6.DAL
 {
-    public partial class WideWorldImportersContext : DbContext
+    public partial class WorldWideImportersContext : DbContext
     {
-        public WideWorldImportersContext() : base("name=WideWorldImportersContext"){}
+        public WorldWideImportersContext() : base("name=WorldWideImportersContext"){}
 
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }

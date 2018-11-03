@@ -194,7 +194,7 @@
     <Compile Include="Models\SystemParameter.cs" />
     <Compile Include="Models\TransactionType.cs" />
     <Compile Include="Models\VehicleTemperature.cs" />
-    <Compile Include="DAL\WideWorldImportersContext.cs" />
+    <Compile Include="DAL\WorldWideImportersContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
