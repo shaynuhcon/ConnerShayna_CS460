@@ -1,0 +1,39 @@
+﻿@model HW6.Models.ViewModels.PersonViewModel
+
+@{
+    ViewBag.Title = "Client Profile";
+}
+
+<img src="@Url.Content("~/Content/Images/NoPhotoAvailable.jpg")" alt="No photo available." style="width: 150px; height: 200px;" />
+
+<div class="panel panel-default center">
+    <div class="panel-heading">
+        <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About @Model.FullName</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2 bold">@Html.DisplayNameFor(model => model.FullName): </div>
+            <div class="col-md-3">@Html.DisplayFor(model => model.FullName)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 bold">@Html.DisplayNameFor(model => model.PreferredName): </div>
+            <div class="col-md-3">@Html.DisplayFor(model => model.PreferredName)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 bold">@Html.DisplayNameFor(model => model.PhoneNumber): </div>
+            <div class="col-md-3">@Html.DisplayFor(model => model.PhoneNumber)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 bold">@Html.DisplayNameFor(model => model.FaxNumber): </div>
+            <div class="col-md-3">@Html.DisplayFor(model => model.FaxNumber)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 bold">@Html.DisplayNameFor(model => model.ValidFrom): </div>
+            <div class="col-md-3">@Html.DisplayFor(model => model.ValidFrom)</div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    &lArr; @Html.ActionLink("Back to search results", null, null, null, new { onclick = "window.history.go(-1); return false;" })
+</div>

@@ -1,0 +1,38 @@
+﻿@model HW6.Models.ViewModels.PeopleViewModel
+
+@{
+    ViewBag.Title = "Client Search";
+}
+
+<h3>Client Search</h3>
+
+@using (Html.BeginForm("Search", "Client", FormMethod.Post))
+{
+    <div class="input-group">
+        <span class="input-group-btn">
+            @Html.TextBoxFor(x => x.Name, new {@class = "form-control", placeholder = "Search by client name"})
+            <button class="btn btn-default" type="submit">
+                <span class="glyphicon glyphicon-search" aria-hidden="true">
+                </span> Search!
+            </button>
+        </span>
+    </div>
+}
+
+@if (Model?.PeopleResults != null)
+{
+    <div class="wrapper">
+        <h5>Names matching your search results for "@Model.Name"</h5>
+
+        <table class="table">
+            <tbody>
+            @foreach (var person in Model.PeopleResults)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@person.FullName, "Get", "Client", new { id = person.PersonID}, null)</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
