@@ -20,10 +20,13 @@ namespace HW6.Models.ViewModels
         [DisplayName("Member since")]
         public string AccountOpened { get; set; }
 
+        // Used to pinpoint location on map
         public DbGeography DeliveryLocation { get; set; }
 
+        // Used to label location map
         public string City { get; set; }
 
+        // Used to label location map
         public string State { get; set; }
 
     }

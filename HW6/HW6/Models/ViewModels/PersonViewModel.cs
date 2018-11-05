@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace HW6.Models.ViewModels
 {
+    // Data to be used on client profile page
     public class PersonViewModel
     {
         [DisplayName("Full name")]

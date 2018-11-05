@@ -12,12 +12,15 @@ namespace HW6.Controllers
 
         public ActionResult Search()
         {
+            // Return view where user can search for person by name
             return View();
         }
 
         [HttpPost]
         public ActionResult Search(PeopleViewModel model)
         {
+            // Search for any person whose name contains input provided by user 
+            // then assign to view model
             model.PeopleResults = _context.People
                 .Where(p => p.FullName.Contains(model.Name))
                 .Select(p => new PersonSearchViewModel
@@ -25,8 +28,10 @@ namespace HW6.Controllers
                     PersonID = p.PersonID,
                     FullName = p.FullName
                 }).ToList();
+
             _context.Dispose();
 
+            // Return view with search results
             return View(model);
         }
 
@@ -43,7 +48,7 @@ namespace HW6.Controllers
                 return RedirectToAction("GetPrimaryContact", new {id});
             }
 
-            // Get values needed for profile
+            // Get Person values needed for profile
             PersonViewModel person = _context.People
                 .Where(p => p.PersonID == id)
                 .Select(p => new PersonViewModel
@@ -53,6 +58,7 @@ namespace HW6.Controllers
                     PhoneNumber = p.PhoneNumber,
                     FaxNumber = p.FaxNumber,
                     EmailAddress = p.EmailAddress,
+                    // SqlFunctions used to format how date will be displayed
                     ValidFrom = SqlFunctions.DateName("month", p.ValidFrom) + " " +
                                 SqlFunctions.DateName("day", p.ValidFrom) + ", " +
                                 SqlFunctions.DateName("year", p.ValidFrom),
@@ -61,6 +67,7 @@ namespace HW6.Controllers
 
             _context.Dispose();
 
+            // Return view with results for person
             return View(person);
         }
 
@@ -97,6 +104,7 @@ namespace HW6.Controllers
                     FaxNumber = c.FaxNumber,
                     PhoneNumber = c.PhoneNumber,
                     Website = c.WebsiteURL,
+                    // The following 3 variables are used for real-time map on results page
                     DeliveryLocation = c.DeliveryLocation,
                     City = c.City.CityName,
                     State =  c.City.StateProvince.StateProvinceName
