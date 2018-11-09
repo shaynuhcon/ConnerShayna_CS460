@@ -1,0 +1,25 @@
+﻿@using HW7.Controllers
+
+@{
+    ViewBag.Title = "Translator";
+}
+
+<h2>Translator</h2>
+
+@using (Html.BeginForm("Sticker", "Translate", FormMethod.Post))
+{
+    //Uses grid layout to display form elements. All required
+    <form>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <input type="text" class="form-control" id="word" name="word">
+
+            </div>
+        </div>
+        <div class="row">
+        <div class="form-group col-md-3">
+            <button type="submit" class="btn btn-default">Submit Request</button>
+        </div>
+        </div>
+    </form>
+}
