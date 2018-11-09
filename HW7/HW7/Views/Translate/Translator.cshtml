@@ -1,25 +1,21 @@
-﻿@using HW7.Controllers
-
-@{
-    ViewBag.Title = "Translator";
+﻿@{
+    ViewBag.Title = "CS 460 Homework 7";
 }
 
-<h2>Translator</h2>
-
-@using (Html.BeginForm("Sticker", "Translate", FormMethod.Post))
+<h3>Internet Language Translator</h3>
+@using (Html.BeginForm("Translate", "Translate", FormMethod.Post))
 {
-    //Uses grid layout to display form elements. All required
     <form>
-        <div class="row">
-            <div class="form-group col-md-3">
+        <div class="row center">
+            <div class="form-group col-md-12">
                 <input type="text" class="form-control" id="word" name="word">
-
             </div>
-        </div>
-        <div class="row">
-        <div class="form-group col-md-3">
-            <button type="submit" class="btn btn-default">Submit Request</button>
-        </div>
         </div>
     </form>
 }
+
+<div class="col-lg-6">
+    <div id="Message"></div>
+    </div>
+
+<script type="text/javascript" src="~/Scripts/Translate.js"></script>

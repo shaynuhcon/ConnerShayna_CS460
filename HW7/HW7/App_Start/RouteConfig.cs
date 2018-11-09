@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace HW7
@@ -16,7 +12,7 @@ namespace HW7
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Translate", action = "Sticker", id = UrlParameter.Optional }
+                defaults: new { controller = "Translate", action = "Translator", id = UrlParameter.Optional }
             );
         }
     }
