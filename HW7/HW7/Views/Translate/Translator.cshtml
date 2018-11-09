@@ -3,19 +3,17 @@
 }
 
 <h3>Internet Language Translator</h3>
-@using (Html.BeginForm("Translate", "Translate", FormMethod.Post))
-{
-    <form>
-        <div class="row center">
-            <div class="form-group col-md-12">
-                <input type="text" class="form-control" id="words" name="words">
-            </div>
+
+<form>
+    <div class="row center">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="userInput" name="userInput" pattern="^[0-9]*$">
         </div>
-    </form>
-}
+    </div>
+</form>
 
 <div class="col-lg-6">
     <div id="output"></div>
-    </div>
+</div>
 
 <script type="text/javascript" src="~/Scripts/Translate.js"></script>

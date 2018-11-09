@@ -14,6 +14,12 @@ namespace HW7
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Translate", action = "Translator", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Translate",
+                url: "{controller}/{action}/{lastWord}",
+                defaults: new { controller = "Translate", action = "Translate", lastWord = UrlParameter.Optional }
+            );
         }
     }
 }
