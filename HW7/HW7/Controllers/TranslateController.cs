@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using HW7.DAL;
+using HW7.Models;
 using RestSharp;
 
 namespace HW7.Controllers
@@ -12,16 +15,52 @@ namespace HW7.Controllers
 
         public ActionResult Translator()
         {
+            // Get details of request
+            RequestLog log = new RequestLog
+            {
+                DateInserted = DateTime.Now,
+                RequestUrl = Request.Url?.ToString(),
+                RequestType = Request.RequestType,
+                Word = null,
+                Browser = Request.Browser.Type,
+                Ip = Request.UserHostAddress
+            };
+
+            using (var context = new LoggingContext())
+            {
+                // Add and save log to table
+                context.RequestLogs.Add(log);
+                context.SaveChanges();
+            }
+
             return View();
         }
 
         public JsonResult Translate(string lastWord)
         {
+            // Get details of request
+            RequestLog log = new RequestLog
+            {
+                DateInserted = DateTime.Now,
+                RequestUrl = Request.Url?.ToString(),
+                RequestType = Request.RequestType,
+                Word = lastWord,
+                Browser = Request.Browser.Type,
+                Ip = Request.UserHostAddress
+            };
+
+            using (var context = new LoggingContext())
+            {
+                // Add and save log to table
+                context.RequestLogs.Add(log);
+                context.SaveChanges();
+            }
+
             // If input is a "boring" word, just return word
             if (_boringWords.Contains(lastWord.ToLower())) return Json(lastWord, JsonRequestBehavior.AllowGet);
             
             // Get sticker response from Giphy 
-            RestClient client = new RestClient($"https://api.giphy.com/v1/stickers/translate?api_key={_apiKey}={lastWord}");
+            RestClient client = new RestClient($"https://api.giphy.com/v1/stickers/translate?api_key={_apiKey}&s={lastWord}");
             RestRequest request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
 
@@ -52,6 +91,9 @@ namespace HW7.Controllers
             "him",
             "her",
             "going",
+            "for",
+            "you're",
+            "your",
         };
     }
 }

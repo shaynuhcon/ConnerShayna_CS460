@@ -16,6 +16,12 @@ namespace HW7
                 defaults: new { controller = "Translate", action = "Translate" }
             );
 
+            //routes.MapRoute(
+            //    name: "Clear",
+            //    url: "Translate/",
+            //    defaults: new { controller = "Translate", action = "Translator" }
+            //);
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
