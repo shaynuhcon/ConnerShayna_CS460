@@ -93,7 +93,7 @@ namespace HW7.Controllers
             "going",
             "for",
             "you're",
-            "your",
+            "your"
         };
     }
 }
