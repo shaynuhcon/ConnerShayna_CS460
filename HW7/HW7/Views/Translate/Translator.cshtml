@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "CS 460 Homework 7";
+}
+
+@section Scripts 
+{
+    <script type="text/javascript" src="~/Scripts/Translate.js"></script>
+}
+
+<h3>Internet Language Translator</h3>
+
+<form>
+    <div class="row center">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="userInput" name="userInput" pattern="[^a-zA-Z0-9]">
+            <div class="wrapped">
+            <button class="btn btn-default" id="clear">Clear</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="col-md-12">
+    <div id="output"></div>
+</div>
