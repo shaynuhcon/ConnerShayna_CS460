@@ -11,6 +11,7 @@ namespace HW7.Controllers
 {
     public class TranslateController : Controller
     {
+        private readonly string _baseUrl = ConfigurationManager.AppSettings["GiphyUrl"];
         private readonly string _apiKey = ConfigurationManager.AppSettings["GiphyKey"];
 
         public ActionResult Translator()
@@ -58,10 +59,16 @@ namespace HW7.Controllers
 
             // If input is a "boring" word, just return word
             if (_boringWords.Contains(lastWord.ToLower())) return Json(lastWord, JsonRequestBehavior.AllowGet);
-            
-            // Get sticker response from Giphy 
-            RestClient client = new RestClient($"https://api.giphy.com/v1/stickers/translate?api_key={_apiKey}&s={lastWord}");
+
+            // Initialize RestClient with base Giphy URL
+            RestClient client = new RestClient(_baseUrl);
+
+            // Initialize RestRequest with parameters
             RestRequest request = new RestRequest(Method.GET);
+            request.AddParameter("api_key", _apiKey);
+            request.AddParameter("s", lastWord);
+
+            // Get response from Stickers API 
             IRestResponse response = client.Execute(request);
 
             // Deserialize and return json response
