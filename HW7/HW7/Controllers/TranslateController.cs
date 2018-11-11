@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using RestSharp;
@@ -7,19 +8,20 @@ namespace HW7.Controllers
 {
     public class TranslateController : Controller
     {
+        private readonly string _apiKey = ConfigurationManager.AppSettings["GiphyKey"];
+
         public ActionResult Translator()
         {
             return View();
         }
 
-        [HttpPost]
         public JsonResult Translate(string lastWord)
         {
             // If input is a "boring" word, just return word
-            if (_boringWords.Contains(lastWord)) return Json(lastWord, JsonRequestBehavior.AllowGet);
+            if (_boringWords.Contains(lastWord.ToLower())) return Json(lastWord, JsonRequestBehavior.AllowGet);
             
             // Get sticker response from Giphy 
-            RestClient client = new RestClient($"https://api.giphy.com/v1/stickers/translate?api_key=KjJ8Sheq7lqXoB3zvB0pW0Qd8ZcFQYkq&s={lastWord}");
+            RestClient client = new RestClient($"https://api.giphy.com/v1/stickers/translate?api_key={_apiKey}={lastWord}");
             RestRequest request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
 
@@ -32,7 +34,24 @@ namespace HW7.Controllers
         {
             "the",
             "a",
-            "of"
+            "of",
+            "i",
+            "is",
+            "am",
+            "me",
+            "they",
+            "you",
+            "he",
+            "she",
+            "it",
+            "i'm",
+            "to",
+            "my",
+            "this",
+            "that",
+            "him",
+            "her",
+            "going",
         };
     }
 }

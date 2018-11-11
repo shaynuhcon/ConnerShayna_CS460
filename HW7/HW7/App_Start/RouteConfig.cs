@@ -9,16 +9,17 @@ namespace HW7
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // Custom route for Translate/Translator/{lastWord} method 
+            routes.MapRoute(
+                name: "Translate",
+                url: "Translate/{lastWord}",
+                defaults: new { controller = "Translate", action = "Translate" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Translate", action = "Translator", id = UrlParameter.Optional }
-            );
-
-            routes.MapRoute(
-                name: "Translate",
-                url: "{controller}/{action}/{lastWord}",
-                defaults: new { controller = "Translate", action = "Translate", lastWord = UrlParameter.Optional }
             );
         }
     }
