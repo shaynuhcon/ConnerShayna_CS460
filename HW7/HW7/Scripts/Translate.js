@@ -36,12 +36,12 @@ function displayData(data) {
     if (typeof data == "string") {
         div.innerHTML += data + " ";
     } else {
-        show_image(data.data.embed_url);
+        showImage(data.data.embed_url);
     }
 }
 
 // Append gif to output 
-function show_image(src) {
+function showImage(src) {
     var div = document.getElementById("output");
     var sticker = '<iframe src="' +
         src +
