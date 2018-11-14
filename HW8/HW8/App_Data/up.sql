@@ -48,7 +48,7 @@ CREATE TABLE Bid
 (
     BidID int IDENTITY(1,1) NOT NULL,
     Price nvarchar(max) NOT NULL,
-    Timestamp nvarchar(max) NOT NULL,
+    Timestamp datetime NOT NULL,
     ItemID int NOT NULL,
     BuyerID int NOT NULL,
     CONSTRAINT PK_Bid PRIMARY KEY (BidID),
