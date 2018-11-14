@@ -1,0 +1,33 @@
+﻿@model IEnumerable<HW8.Models.ViewModels.ItemViewModel>
+@{
+    ViewBag.Title = "Item List";
+}
+
+<h3>Items Available for Auction</h3>
+
+<div class="wrapper">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">@Html.LabelFor(model => model.First().ItemId)</th>
+            <th scope="col">@Html.LabelFor(model => model.First().Name)</th>
+            <th scope="col">@Html.LabelFor(model => model.First().Description)</th>
+            <th scope="col">@Html.LabelFor(model => model.First().SellerName)</th>
+            <th scope="col"></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@Html.DisplayFor(i => item.ItemId)</th>
+                <td>@Html.DisplayFor(i => item.Name)</td>
+                <td>@Html.DisplayFor(i => item.Description)</td>
+                <td>@Html.DisplayFor(i => item.SellerName)</td>
+                <td>@Html.ActionLink("Edit", "Edit", "Item", new {id = item.ItemId}, null) | @Html.ActionLink("Delete", "Delete", "Item", new {id = item.ItemId}, null)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
