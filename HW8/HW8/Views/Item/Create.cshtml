@@ -1,4 +1,4 @@
-﻿@model HW8.Models.ViewModels.ItemViewModel
+﻿@model HW8.Models.ViewModels.CreateItemViewModel
 @{
     ViewBag.Title = "Add Item";
 }
@@ -12,22 +12,22 @@
             <div class="row">
                 <div class="form-group col-md-3">
                     @Html.DisplayNameFor(model => model.Name)
-                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "First Name" })
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Item Name" })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-md-3">
-                    @Html.DisplayNameFor(model => model.SellerName)
+                    @Html.DisplayNameFor(model => model.SellerId)
                     @Html.DropDownListFor(
-                        x => x.SellerName,
+                        x => x,
                         new SelectList(ViewBag.Sellers, "Key", "Value"),
                         "Select Seller Name",
                         new { @class = "form-control" })
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-9">
+                <div class="form-group col-md-6">
                     @Html.DisplayNameFor(model => model.Description)
-                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = 10 })
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = 5 })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
             </div>

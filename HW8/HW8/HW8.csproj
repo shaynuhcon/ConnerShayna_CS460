@@ -168,7 +168,8 @@
     <Compile Include="Models\Buyer.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Seller.cs" />
-    <Compile Include="Models\ViewModels\ItemViewModel.cs" />
+    <Compile Include="Models\ViewModels\CreateItemViewModel.cs" />
+    <Compile Include="Models\ViewModels\ListItemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

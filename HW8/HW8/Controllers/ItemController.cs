@@ -2,30 +2,46 @@
 using System.Linq;
 using System.Web.Mvc;
 using HW8.DAL;
+using HW8.Models;
 using HW8.Models.ViewModels;
 
 namespace HW8.Controllers
 {
     public class ItemController : Controller
     {
-        private readonly AuctionContext _context = new AuctionContext();
         public ActionResult Index()
         {
-            var model = GetAllItems();
-            return View("List", model);
+            return View("List", GetAllItems());
         }
 
         public ActionResult Create()
         {
-            ViewBag.Sellers = _context.Sellers.ToList();
+            ViewBag.Sellers = null;
+
+            using (var context = new AuctionContext())
+            {
+                ViewBag.Sellers = context.Sellers.ToList().ToDictionary(x => x.SellerId, x => x.Name);
+            }
+
             return View();
         }
-
-
+        
         [HttpPost]
-        public ActionResult Create(ItemViewModel model)
+        public ActionResult Create(CreateItemViewModel model)
         {
-            return View();
+            using (var context = new AuctionContext()) 
+            {
+                context.Items.Add(new Item
+                {
+                    Name = model.Name,
+                    Description = model.Description,
+                    SellerId = model.SellerId
+                });
+
+                context.SaveChanges();
+            }
+
+            return View("List", GetAllItems());
         }
 
         public ActionResult Details()
@@ -40,28 +56,39 @@ namespace HW8.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        private IEnumerable<ItemViewModel> GetAllItems()
-        {
-            // Get all available items
-            var items = _context.Items.ToList();
-            var model = new List<ItemViewModel>();
-
-            // Convert list of Item to list of ItemViewModel
-            foreach (var item in items)
+            using (var context = new AuctionContext())
             {
-                model.Add(new ItemViewModel
-                {
-                    ItemId = item.ItemId,
-                    Name = item.Name,
-                    Description = item.Description,
-                    SellerName = _context.Sellers.FirstOrDefault(s => s.SellerId == item.SellerId)?.Name
-                });
+                var item = context.Items.FirstOrDefault(i => i.ItemId == id);
+                context.Items.Remove(item);
+                context.SaveChanges();
             }
 
-            _context.Dispose();
+            return View("List", GetAllItems());
+        }
+
+        private IEnumerable<ListItemViewModel> GetAllItems()
+        {
+            List<Item> items = new List<Item>();
+            List<ListItemViewModel> model = new List<ListItemViewModel>();
+            
+            // Get all available items
+            using (var context = new AuctionContext())
+            {
+                items = context.Items.ToList();
+
+
+                // Convert list of Item to list of ItemViewModel
+                foreach (var item in items)
+                {
+                    model.Add(new ListItemViewModel
+                    {
+                        ItemId = item.ItemId,
+                        Name = item.Name,
+                        Description = item.Description,
+                        SellerName = context.Sellers.FirstOrDefault(s => s.SellerId == item.SellerId)?.Name
+                    });
+                }
+            }
 
             return model;
         }
