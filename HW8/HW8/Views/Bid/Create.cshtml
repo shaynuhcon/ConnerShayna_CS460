@@ -33,7 +33,7 @@
             <div class="form-group col-md-6">
                 @Html.DisplayNameFor(model => model.Price)
                 @Html.TextBoxFor(model => model.Price, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.Price, "", new {@class = "text-danger"})
+                @Html.ValidationMessageFor(model => model.Price, "Please enter a valid price.", new {@class = "text-danger"})
             </div>
         </div>
         <div class="row">

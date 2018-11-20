@@ -18,7 +18,7 @@ namespace HW8.DAL.Configurations
 
             Property(x => x.Price)
                 .HasColumnName("Price")
-                .HasColumnType("nvarchar")
+                .HasColumnType("money")
                 .IsRequired();
 
             Property(x => x.Timestamp)

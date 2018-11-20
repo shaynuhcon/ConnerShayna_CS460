@@ -7,7 +7,8 @@ namespace HW8.Models.ViewModels
     {
         [Required]
         [DisplayName("Bid Amount")]
-        public string Price { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal Price { get; set; }
 
         [Required]
         [DisplayName("Item")]

@@ -8,6 +8,6 @@ namespace HW8.Models.ViewModels
 
         public DateTime Timestamp { get; set; }
 
-        public string Price { get; set; }
+        public decimal Price { get; set; }
     }
 }

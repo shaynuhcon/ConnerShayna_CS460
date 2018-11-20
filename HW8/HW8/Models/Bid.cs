@@ -6,7 +6,7 @@ namespace HW8.Models
     {
         public int BidId { get; set; }
 
-        public string Price { get; set; }
+        public decimal Price { get; set; }
 
         public DateTime Timestamp { get; set; }
 

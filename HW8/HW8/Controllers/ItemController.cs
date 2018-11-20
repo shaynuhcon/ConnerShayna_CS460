@@ -49,6 +49,11 @@ namespace HW8.Controllers
             return View("List", GetAllItems());
         }
 
+        public ActionResult Details(ItemDetailViewModel model)
+        {
+
+        }
+
         public ActionResult Edit(int id)
         {
             PopulateSellerDropdown();
@@ -107,6 +112,7 @@ namespace HW8.Controllers
             return View("List", GetAllItems());
         }
 
+
         private IEnumerable<ListItemViewModel> GetAllItems()
         {
             List<Item> items = new List<Item>();
@@ -134,7 +140,7 @@ namespace HW8.Controllers
             return model;
         }
 
-        private void PopulateSellerDropdown()
+        private void PopulateDropdownValues()
         {
             // Get all sellers and save keys/values to dictionary for drop down
             using (var context = new AuctionContext())
