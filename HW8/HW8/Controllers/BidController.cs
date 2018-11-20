@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using HW8.DAL;
@@ -37,9 +38,41 @@ namespace HW8.Controllers
                 context.SaveChanges();
             }
 
-            ItemDetailViewModel detailModel = new ItemDetailViewModel();
+            return RedirectToAction("Details", "Item", new { id = model.ItemId });
+        }
 
-            return RedirectToAction("Details", "Item", new { model = detailModel });
+        public PartialViewResult Bids(int id)
+        {
+
+            return PartialView("_Bids", GetAllBids());
+        }
+
+        private IEnumerable<ListBidViewModel> GetAllBids()
+        {
+            List<Bid> bids = new List<Bid>();
+            List<ListBidViewModel> model = new List<ListBidViewModel>();
+
+            // Get all available bids
+            using (var context = new AuctionContext())
+            {
+                bids = context.Bids.ToList();
+
+
+                // Convert list of Bid to list of ListBidViewModel
+                foreach (var bid in bids)
+                {
+                    model.Add(new ListBidViewModel
+                    {
+                        Timestamp = bid.Timestamp,
+                        Price = bid.Price,
+                        BuyerName = context.Buyers.FirstOrDefault(b => b.BuyerId == bid.BuyerId)?.Name
+                    });
+                }
+            }
+
+            // Order descending by price
+            model = model.OrderByDescending(p => p.Price).ToList();
+            return model;
         }
 
         private void PopulateDropdownValues()

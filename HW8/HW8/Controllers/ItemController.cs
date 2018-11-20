@@ -18,7 +18,7 @@ namespace HW8.Controllers
         public ActionResult Create()
         {
             // Display page with form to add a new item
-            PopulateSellerDropdown();
+            PopulateDropdownValues();
             return View();
         }
         
@@ -28,7 +28,7 @@ namespace HW8.Controllers
             // If model validation does not pass, display form with errors
             if (!ModelState.IsValid)
             {
-                PopulateSellerDropdown();
+                PopulateDropdownValues();
                 return View(model);
             }
 
@@ -49,14 +49,24 @@ namespace HW8.Controllers
             return View("List", GetAllItems());
         }
 
-        public ActionResult Details(ItemDetailViewModel model)
+        public ActionResult Details(int id)
         {
+            var model = new ListItemViewModel();
+            using (var context = new AuctionContext())
+            {
+                var item = context.Items.FirstOrDefault(i => i.ItemId == id);
+                model.ItemId = id;
+                model.Name = item.Name;
+                model.Description = item.Description;
+                model.SellerName = context.Sellers.FirstOrDefault(s => s.SellerId == item.SellerId)?.Name;
+            }
 
+                return View(model);
         }
 
         public ActionResult Edit(int id)
         {
-            PopulateSellerDropdown();
+            PopulateDropdownValues();
             EditItemViewModel model = new EditItemViewModel();
 
             // Get existing values for given ItemID 
@@ -79,7 +89,7 @@ namespace HW8.Controllers
             // If model validation does not pass, display form with errors
             if (!ModelState.IsValid)
             {
-                PopulateSellerDropdown();
+                PopulateDropdownValues();
                 return View(model);
             }
 

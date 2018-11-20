@@ -178,6 +178,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\down.sql" />
+    <Content Include="App_Data\TableToConfiguration.sql" />
+    <Content Include="App_Data\TableToModel.sql" />
     <Content Include="App_Data\up.sql" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -221,6 +223,7 @@
     <Content Include="Views\Item\Edit.cshtml" />
     <Content Include="Views\Item\Delete.cshtml" />
     <Content Include="Views\Bid\Create.cshtml" />
+    <Content Include="Views\Bid\_Bids.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
