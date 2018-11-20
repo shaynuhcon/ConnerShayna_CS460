@@ -3,9 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HW8.Models.ViewModels
 {
-    public class ListItemViewModel
+    public class EditItemViewModel
     {
-        [DisplayName("Item ID")]
         public int ItemId { get; set; }
 
         [Required]
@@ -16,7 +15,8 @@ namespace HW8.Models.ViewModels
         [DisplayName("Item Description")]
         public string Description { get; set; }
 
-        [DisplayName("Seller Name")]
-        public string SellerName { get; set; }
+        [Required(ErrorMessage = "Seller is required")]
+        [DisplayName("Seller")]
+        public int SellerId { get; set; }
     }
 }

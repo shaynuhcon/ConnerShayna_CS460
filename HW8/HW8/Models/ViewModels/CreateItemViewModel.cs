@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HW8.Models.ViewModels
 {
+     
     public class CreateItemViewModel
     {
         [Required]
@@ -13,10 +14,8 @@ namespace HW8.Models.ViewModels
         [DisplayName("Item Description")]
         public string Description { get; set; }
 
-        [DisplayName("Seller Name")]
-        public string SellerName { get; set; }
-
-        [DisplayName("Seller ID")]
+        [Required(ErrorMessage = "Seller is required")]
+        [DisplayName("Seller")]
         public int SellerId { get; set; }
     }
 }

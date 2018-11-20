@@ -1,7 +1,44 @@
-﻿
+﻿@model HW8.Models.ViewModels.EditItemViewModel
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Item";
 }
 
-<h2>Edit</h2>
+<h2>Add Item</h2>
 
+<div class="wrapper">
+    @using (Html.BeginForm("Edit", "Item", FormMethod.Post))
+    {
+        <form>
+            @Html.HiddenFor(model => model.ItemId)
+            <div class="row">
+                <div class="form-group col-md-3">
+                    @Html.DisplayNameFor(model => model.Name)
+                    @Html.TextBoxFor(model => model.Name, new {@class = "form-control", placeholder = "Item Name"})
+                    @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.DisplayNameFor(model => model.SellerId)
+                    @Html.DropDownListFor(
+                        x => x.SellerId,
+                        new SelectList(ViewBag.Sellers, "Key", "Value"),
+                        "Select Seller Name",
+                        new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.SellerId, "", new {@class = "text-danger"})
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.DisplayNameFor(model => model.Description)
+                    @Html.TextAreaFor(model => model.Description, new {@class = "form-control", rows = 5})
+                    @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <button type="submit" class="btn btn-default">Update Item</button>
+                </div>
+            </div>
+        </form>
+    }
+</div>

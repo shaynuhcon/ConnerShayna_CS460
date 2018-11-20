@@ -11,24 +11,28 @@ namespace HW8.Controllers
     {
         public ActionResult Index()
         {
+            // Display page with list of items
             return View("List", GetAllItems());
         }
 
         public ActionResult Create()
         {
-            ViewBag.Sellers = null;
-
-            using (var context = new AuctionContext())
-            {
-                ViewBag.Sellers = context.Sellers.ToList().ToDictionary(x => x.SellerId, x => x.Name);
-            }
-
+            // Display page with form to add a new item
+            PopulateSellerDropdown();
             return View();
         }
         
         [HttpPost]
         public ActionResult Create(CreateItemViewModel model)
         {
+            // If model validation does not pass, display form with errors
+            if (!ModelState.IsValid)
+            {
+                PopulateSellerDropdown();
+                return View(model);
+            }
+
+            // Add new item to table 
             using (var context = new AuctionContext()) 
             {
                 context.Items.Add(new Item
@@ -41,21 +45,57 @@ namespace HW8.Controllers
                 context.SaveChanges();
             }
 
+            // Display page with list of items including newly added item
             return View("List", GetAllItems());
-        }
-
-        public ActionResult Details()
-        {
-            return View();
         }
 
         public ActionResult Edit(int id)
         {
-            return View();
+            PopulateSellerDropdown();
+            EditItemViewModel model = new EditItemViewModel();
+
+            // Get existing values for given ItemID 
+            using (var context = new AuctionContext())
+            {
+                var item = context.Items.FirstOrDefault(i => i.ItemId == id);
+                model.ItemId = id;
+                model.Description = item.Description;
+                model.Name = item.Name;
+                model.SellerId = item.SellerId;
+            }
+            
+            // Display page with existing item values for user to edit
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditItemViewModel model)
+        {
+            // If model validation does not pass, display form with errors
+            if (!ModelState.IsValid)
+            {
+                PopulateSellerDropdown();
+                return View(model);
+            }
+
+            // Get item and update existing values with new/given values 
+            using (var context = new AuctionContext())
+            {
+                var item = context.Items.FirstOrDefault(i => i.ItemId == model.ItemId);
+                item.Description = model.Description;
+                item.Name = model.Name;
+                item.SellerId = model.SellerId;
+
+                context.SaveChanges();
+            }
+
+            // Display page with list of items including newly updated item
+            return View("List", GetAllItems());
         }
 
         public ActionResult Delete(int id)
         {
+            // Get item and delete it
             using (var context = new AuctionContext())
             {
                 var item = context.Items.FirstOrDefault(i => i.ItemId == id);
@@ -63,6 +103,7 @@ namespace HW8.Controllers
                 context.SaveChanges();
             }
 
+            // Display page with list of items excluding recently deleted item
             return View("List", GetAllItems());
         }
 
@@ -91,6 +132,15 @@ namespace HW8.Controllers
             }
 
             return model;
+        }
+
+        private void PopulateSellerDropdown()
+        {
+            // Get all sellers and save keys/values to dictionary for drop down
+            using (var context = new AuctionContext())
+            {
+                ViewBag.Sellers = context.Sellers.ToList().ToDictionary(x => x.SellerId, x => x.Name);
+            }
         }
     }
 }

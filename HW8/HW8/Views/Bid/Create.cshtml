@@ -1,7 +1,46 @@
-﻿
+﻿@model HW8.Models.ViewModels.CreateBidViewModel
 @{
     ViewBag.Title = "Place Bid";
 }
 
 <h2>Place bid</h2>
 
+<div class="wrapper">
+@using (Html.BeginForm("Create", "Bid", FormMethod.Post))
+{
+    <form>
+        <div class="row">
+            <div class="form-group col-md-3">
+                @Html.DisplayNameFor(model => model.BuyerId)
+                @Html.DropDownListFor(
+                    x => x.BuyerId,
+                    new SelectList(ViewBag.Buyers, "Key", "Value"),
+                    "Select Buyer Name",
+                    new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.BuyerId, "", new {@class = "text-danger"})
+            </div>
+            <div class="form-group col-md-3">
+                @Html.DisplayNameFor(model => model.ItemId)
+                @Html.DropDownListFor(
+                    x => x.ItemId,
+                    new SelectList(ViewBag.Items, "Key", "Value"),
+                    "Select Item Name",
+                    new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.ItemId, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.DisplayNameFor(model => model.Price)
+                @Html.TextBoxFor(model => model.Price, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Price, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <button type="submit" class="btn btn-default">Place Bid!</button>
+            </div>
+        </div>
+    </form>
+}
+</div>
