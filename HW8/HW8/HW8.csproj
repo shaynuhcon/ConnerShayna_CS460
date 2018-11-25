@@ -189,6 +189,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bidUpdate.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -223,7 +224,8 @@
     <Content Include="Views\Item\Edit.cshtml" />
     <Content Include="Views\Item\Delete.cshtml" />
     <Content Include="Views\Bid\Create.cshtml" />
-    <Content Include="Views\Bid\_Bids.cshtml" />
+    <Content Include="Views\Bid\_BidsByItemID.cshtml" />
+    <Content Include="Views\Bid\_RecentBids.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

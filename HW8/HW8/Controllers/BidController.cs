@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using HW8.DAL;
@@ -41,29 +42,34 @@ namespace HW8.Controllers
             return RedirectToAction("Details", "Item", new { id = model.ItemId });
         }
 
-        public PartialViewResult Bids(int id)
+        [HttpGet]
+        public PartialViewResult BidsByItem(int id)
         {
-
-            return PartialView("_Bids", GetAllBids());
+            return PartialView("_BidsByItemID", GetBidsByItemId(id));
         }
 
-        private IEnumerable<ListBidViewModel> GetAllBids()
+        public PartialViewResult RecentBids()
+        {
+            return PartialView("_RecentBids", GetMostRecentBids());
+        }
+
+        private IEnumerable<ListBidViewModel> GetBidsByItemId(int id)
         {
             List<Bid> bids = new List<Bid>();
             List<ListBidViewModel> model = new List<ListBidViewModel>();
 
-            // Get all available bids
+            // Get bids by item ID
             using (var context = new AuctionContext())
             {
-                bids = context.Bids.ToList();
-
-
+                bids = context.Bids.Where(b => b.ItemId == id).ToList();
+                
                 // Convert list of Bid to list of ListBidViewModel
                 foreach (var bid in bids)
                 {
                     model.Add(new ListBidViewModel
                     {
-                        Timestamp = bid.Timestamp,
+                        ItemId = bid.ItemId,
+                        Timestamp = bid.Timestamp.ToString("dd MMM yyyy hh:mm tt"),
                         Price = bid.Price,
                         BuyerName = context.Buyers.FirstOrDefault(b => b.BuyerId == bid.BuyerId)?.Name
                     });
@@ -72,6 +78,36 @@ namespace HW8.Controllers
 
             // Order descending by price
             model = model.OrderByDescending(p => p.Price).ToList();
+            return model;
+        }
+
+        private IEnumerable<ListBidViewModel> GetMostRecentBids()
+        {
+            List<Bid> bids = new List<Bid>();
+            List<ListBidViewModel> model = new List<ListBidViewModel>();
+
+            // Get most recent 10 bids
+            using (var context = new AuctionContext())
+            {
+                bids = context.Bids.OrderByDescending(b => b.Timestamp).Take(10).ToList();
+
+                // Convert list of Bid to list of ListBidViewModel
+                foreach (var bid in bids)
+                {
+                    ListBidViewModel listBid = new ListBidViewModel();
+
+                    listBid.ItemId = bid.ItemId;
+                    listBid.ItemName = context.Items.FirstOrDefault(i => i.ItemId == bid.ItemId)?.Name;
+                    listBid.Price = bid.Price;;
+                    listBid.BuyerName = context.Buyers.FirstOrDefault(b => b.BuyerId == bid.BuyerId)?.Name;
+
+                    if (bid.Timestamp.Date == DateTime.Today) listBid.Timestamp = bid.Timestamp.ToString("hh:mm tt");
+                    else listBid.Timestamp = bid.Timestamp.ToString("dd MMM yyyy hh:mm tt");
+
+                    model.Add(listBid);
+                }
+            }
+
             return model;
         }
 

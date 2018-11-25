@@ -1,6 +1,13 @@
-﻿@model HW8.Models.ViewModels.ListItemViewModel
+﻿@using HW8.Models.ViewModels
+@model ListItemViewModel
+
 @{
     ViewBag.Title = "Item Details and Bids";
+}
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/bidUpdate.js"></script>
 }
 
 <h2>Item Details and Bids</h2>
@@ -12,4 +19,9 @@
     <div class="row"><b>@Html.DisplayNameFor(m => m.Description)</b>: @Model.Description</div>
 </div>
 
-@Html.Action("Bids", "Bid", new { id = @Model.ItemId })
+@* Pass item ID to bidUpdate.js *@
+@Html.Hidden("id", Model.ItemId)
+
+<div id="bids">
+    @*Partial view updated by ajax call in bidUpdate.js*@
+</div>

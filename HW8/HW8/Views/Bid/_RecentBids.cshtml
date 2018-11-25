@@ -1,0 +1,31 @@
+﻿@model IEnumerable<HW8.Models.ViewModels.ListBidViewModel>
+
+<div class="wrapper">
+    <table class="table table-striped" id="bidTable">
+        <thead>
+        <tr>
+            <th scope="col">@Html.LabelFor(model => model.First().Timestamp)</th>
+            <th scope="col">@Html.LabelFor(model => model.First().ItemId)</th>
+            <th scope="col">@Html.LabelFor(model => model.First().ItemName)</th>
+            <th scope="col">@Html.LabelFor(model => model.First().BuyerName)</th>
+            <th scope="col">@Html.LabelFor(model => model.First().Price)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var bid in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(b => bid.Timestamp)</td>
+                <td>@Html.DisplayFor(b => bid.ItemId)</td>
+                <td>@Html.ActionLink(@bid.ItemName, "Details", "Item", new { id = bid.ItemId }, null)</td>
+                <td>@Html.DisplayFor(b => bid.BuyerName)</td>
+                <td>@Html.DisplayFor(b => bid.Price)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<div class="wrapper">
+    @Html.ActionLink("Bid on an item!", "Create", "Bid")
+</div>
