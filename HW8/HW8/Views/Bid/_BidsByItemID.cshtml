@@ -1,26 +1,24 @@
 ﻿@model IEnumerable<HW8.Models.ViewModels.ListBidViewModel>
 
-<div class="wrapper">
-    <table class="table table-striped">
-        <thead>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">@Html.LabelFor(model => model.First().Timestamp)</th>
+        <th scope="col">@Html.LabelFor(model => model.First().BuyerName)</th>
+        <th scope="col">@Html.LabelFor(model => model.First().Price)</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var bid in Model)
+    {
         <tr>
-            <th scope="col">@Html.LabelFor(model => model.First().Timestamp)</th>
-            <th scope="col">@Html.LabelFor(model => model.First().BuyerName)</th>
-            <th scope="col">@Html.LabelFor(model => model.First().Price)</th>
+            <td>@Html.DisplayFor(b => bid.Timestamp)</td>
+            <td>@Html.DisplayFor(b => bid.BuyerName)</td>
+            <td>@Html.DisplayFor(b => bid.Price)</td>
         </tr>
-        </thead>
-        <tbody>
-        @foreach (var bid in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(b => bid.Timestamp)</td>
-                <td>@Html.DisplayFor(b => bid.BuyerName)</td>
-                <td>@Html.DisplayFor(b => bid.Price)</td>
-            </tr>
-        }
-        </tbody>
-    </table>
-</div>
+    }
+    </tbody>
+</table>
 
 <div class="wrapper">
     @Html.ActionLink("Bid on an item!", "Create", "Bid")

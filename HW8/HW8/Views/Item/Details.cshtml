@@ -12,16 +12,28 @@
 
 <h3>Item Details and Bids</h3>
 
-<div class="wrapper">
-    <div class="row"><b>@Html.DisplayNameFor(m => m.ItemId)</b>: @Model.ItemId</div>
-    <div class="row"><b>@Html.DisplayNameFor(m => m.SellerName)</b>: @Model.SellerName</div>
-    <div class="row"><b>@Html.DisplayNameFor(m => m.Name)</b>: @Model.Name</div>
-    <div class="row"><b>@Html.DisplayNameFor(m => m.Description)</b>: @Model.Description</div>
+<div class="row">
+    <div class="form-group col-md-2">
+        <b>@Html.DisplayNameFor(i => i.ItemId)</b>: @Html.DisplayFor(i => i.ItemId)
+    </div>
+    <div class="form-group col-md-4">
+        <b>@Html.DisplayNameFor(i => i.Name)</b>: @Html.DisplayFor(i => i.Name)
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-2">
+        <b>@Html.DisplayNameFor(i => i.SellerName)</b>: @Html.DisplayFor(i => i.SellerName)
+    </div>
+    <div class="form-group col-md-8">
+        <b>@Html.DisplayNameFor(i => i.Description)</b>: @Html.DisplayFor(i => i.Description)
+    </div>
 </div>
 
 @* Pass item ID to bidUpdate.js *@
 @Html.Hidden("id", Model.ItemId)
 
 <div id="bids">
-    @*Partial view updated by ajax call in bidUpdate.js*@
+    <div class="row">
+        @*Partial view updated by ajax call in bidUpdate.js*@
+    </div>
 </div>

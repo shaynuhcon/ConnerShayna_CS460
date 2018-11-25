@@ -110,7 +110,13 @@ namespace HW8.Controllers
             return View("List", GetAllItems());
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete()
+        {
+            // Displays page with list of items as well as Delete link
+            return View(GetAllItems());
+        }
+
+        public ActionResult DeleteItem(int id)
         {
             // Get item and delete it
             using (var context = new AuctionContext())

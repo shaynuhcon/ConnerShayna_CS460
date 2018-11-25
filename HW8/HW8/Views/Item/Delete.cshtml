@@ -1,7 +1,33 @@
-﻿
+﻿@model IEnumerable<HW8.Models.ViewModels.ListItemViewModel>
+
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Item";
 }
 
-<h2>Delete</h2>
+<h2>Delete Item</h2>
+
+<div class="wrapper">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">@Html.LabelFor(model => model.First().ItemId)</th>
+                <th scope="col">@Html.LabelFor(model => model.First().Name)</th>
+                <th scope="col">@Html.LabelFor(model => model.First().SellerName)</th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@Html.DisplayFor(i => item.ItemId)</th>
+                    <td>@Html.ActionLink(@item.Name, "Details", "Item", new { id = item.ItemId }, null)</td>
+                    <td>@Html.DisplayFor(i => item.SellerName)</td>
+                    <td>@Html.ActionLink("Delete", "DeleteItem", "Item", new { id = item.ItemId }, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 

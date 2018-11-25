@@ -25,7 +25,7 @@
                 <td>@Html.ActionLink(@item.Name, "Details", "Item", new { id = item.ItemId }, null)</td>
                 <td>@Html.DisplayFor(i => item.Description)</td>
                 <td>@Html.DisplayFor(i => item.SellerName)</td>
-                <td>@Html.ActionLink("Edit", "Edit", "Item", new {id = item.ItemId}, null) | @Html.ActionLink("Delete", "Delete", "Item", new {id = item.ItemId}, null)</td>
+                <td>@Html.ActionLink("Edit", "Edit", "Item", new {id = item.ItemId}, null)
             </tr>
         }
         </tbody>
