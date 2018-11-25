@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<HW8.Models.ViewModels.ListBidViewModel>
 
 <div class="wrapper">
-    <table class="table table-striped" id="bidTable">
+    <h3>Most Recent Bids</h3>
+    
+    <table class="table table-striped">
         <thead>
         <tr>
             <th scope="col">@Html.LabelFor(model => model.First().Timestamp)</th>
@@ -17,7 +19,7 @@
             <tr>
                 <td>@Html.DisplayFor(b => bid.Timestamp)</td>
                 <td>@Html.DisplayFor(b => bid.ItemId)</td>
-                <td>@Html.ActionLink(@bid.ItemName, "Details", "Item", new { id = bid.ItemId }, null)</td>
+                <td>@Html.ActionLink(@bid.ItemName, "Details", "Item", new {id = bid.ItemId}, null)</td>
                 <td>@Html.DisplayFor(b => bid.BuyerName)</td>
                 <td>@Html.DisplayFor(b => bid.Price)</td>
             </tr>

@@ -13,6 +13,7 @@ namespace HW8.Controllers
     {
         public ActionResult Create()
         {
+            // Allow user to bid on item
             PopulateDropdownValues();
             return View();
         }
@@ -20,12 +21,14 @@ namespace HW8.Controllers
         [HttpPost]
         public ActionResult Create(CreateBidViewModel model)
         {
+            // If model validation does not pass, display form with errors
             if (!ModelState.IsValid)
             {
                 PopulateDropdownValues();
                 return View(model);
             }
 
+            // Add new bid to database
             using (var context = new AuctionContext())
             {
                 context.Bids.Add(new Bid
@@ -39,17 +42,20 @@ namespace HW8.Controllers
                 context.SaveChanges();
             }
 
+            // Take user to item details page which displays all bids
             return RedirectToAction("Details", "Item", new { id = model.ItemId });
         }
 
         [HttpGet]
         public PartialViewResult BidsByItem(int id)
         {
+            // Partial view displaying bids for specific item
             return PartialView("_BidsByItemID", GetBidsByItemId(id));
         }
 
         public PartialViewResult RecentBids()
         {
+            // Partial view displaying top 10 most recent bids
             return PartialView("_RecentBids", GetMostRecentBids());
         }
 
@@ -86,9 +92,9 @@ namespace HW8.Controllers
             List<Bid> bids = new List<Bid>();
             List<ListBidViewModel> model = new List<ListBidViewModel>();
 
-            // Get most recent 10 bids
             using (var context = new AuctionContext())
             {
+                // Get most recent 10 bids 
                 bids = context.Bids.OrderByDescending(b => b.Timestamp).Take(10).ToList();
 
                 // Convert list of Bid to list of ListBidViewModel
@@ -113,6 +119,7 @@ namespace HW8.Controllers
 
         private void PopulateDropdownValues()
         {
+            // Dropdown values for Buyer and Items 
             using (var context = new AuctionContext())
             {
                 ViewBag.Buyers = context.Buyers.ToList().ToDictionary(x => x.BuyerId, x => x.Name);

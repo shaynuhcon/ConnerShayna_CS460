@@ -17,7 +17,7 @@ namespace HW8.Controllers
 
         public ActionResult Create()
         {
-            // Display page with form to add a new item
+            // Allow user to auction new item
             PopulateDropdownValues();
             return View();
         }
@@ -32,7 +32,7 @@ namespace HW8.Controllers
                 return View(model);
             }
 
-            // Add new item to table 
+            // Add new item to database 
             using (var context = new AuctionContext()) 
             {
                 context.Items.Add(new Item
@@ -52,6 +52,8 @@ namespace HW8.Controllers
         public ActionResult Details(int id)
         {
             var model = new ListItemViewModel();
+
+            // Get item details for specific item
             using (var context = new AuctionContext())
             {
                 var item = context.Items.FirstOrDefault(i => i.ItemId == id);
@@ -61,7 +63,7 @@ namespace HW8.Controllers
                 model.SellerName = context.Sellers.FirstOrDefault(s => s.SellerId == item.SellerId)?.Name;
             }
 
-                return View(model);
+            return View(model);
         }
 
         public ActionResult Edit(int id)
@@ -121,7 +123,6 @@ namespace HW8.Controllers
             // Display page with list of items excluding recently deleted item
             return View("List", GetAllItems());
         }
-
 
         private IEnumerable<ListItemViewModel> GetAllItems()
         {
