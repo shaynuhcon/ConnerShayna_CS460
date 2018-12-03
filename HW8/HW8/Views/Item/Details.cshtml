@@ -32,8 +32,25 @@
 @* Pass item ID to bidUpdate.js *@
 @Html.Hidden("id", Model.ItemId)
 
-<div id="bids">
+@* Display error message if no bids *@
+<div id="noBids"></div>
+
+@* Build table from JsonResult *@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Timestamp</th>
+            <th scope="col">Buyer Name</th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+@* ------------------------ Used only if using partial view route ------------------------ *@
+@*<div id="bids">
     <div class="row">
         @*Partial view updated by ajax call in bidUpdate.js*@
-    </div>
-</div>
+    @*</div>
+</div>*@

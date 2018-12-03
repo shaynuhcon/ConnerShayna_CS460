@@ -53,6 +53,13 @@ namespace HW8.Controllers
             return PartialView("_BidsByItemID", GetBidsByItemId(id));
         }
 
+        [HttpGet]
+        public JsonResult BidsByItemJson(int id)
+        {
+            // Send bids as json instead of partial view
+            return Json(GetBidsByItemId(id), JsonRequestBehavior.AllowGet);
+        }
+
         public PartialViewResult RecentBids()
         {
             // Partial view displaying top 10 most recent bids
